@@ -3,9 +3,11 @@
 
 #include <QWidget>
 #include <QDebug>
-#include <QList>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QList>
+#include <QStringListModel>
+#include "sceneobject.h"
 
 namespace Ui {
 class Window;
@@ -19,14 +21,17 @@ public:
     explicit Window(QWidget *parent = 0);
     ~Window();
 
+
 private slots:
     void on_aboutButton_clicked();
 
     void on_addTextureButton_clicked();
+    void onListViewItemClicked( const QItemSelection & selection);
 
 private:
     Ui::Window *ui;
-
+    QList<SceneObject*> sceneObjects;
+    QStringListModel *model;
 };
 
 #endif // WINDOW_H

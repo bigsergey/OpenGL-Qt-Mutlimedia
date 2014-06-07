@@ -3,12 +3,14 @@
 MainWidget::MainWidget(QWidget *parent) :
     QGLWidget(parent)
 {
+
 }
 
 void MainWidget::addTexture(QString path) {
    textures[textureNumber] = bindTexture
         (QPixmap(QString(path)), GL_TEXTURE_2D);
    textureNumber++;
+   qDebug() << textureNumber;
 }
 
 void MainWidget::initializeGL()

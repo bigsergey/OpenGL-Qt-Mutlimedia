@@ -4,6 +4,7 @@
 
 #include <QGLWidget>
 #include <QString>
+#include <QDebug>
 
 class MainWidget : public QGLWidget
 {
@@ -20,6 +21,7 @@ protected:
 
 private:
     void draw();
+
 
 signals:
     void texturePathChanged(QString);
