@@ -1,13 +1,13 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <QMainWindow>
+#include <QWidget>
 
 namespace Ui {
 class Window;
 }
 
-class Window : public QMainWindow
+class Window : public QWidget
 {
     Q_OBJECT
 
