@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QDebug>
+#include <QList>
 #include <QMessageBox>
 #include <QFileDialog>
 
@@ -25,6 +26,7 @@ private slots:
 
 private:
     Ui::Window *ui;
+
 };
 
 #endif // WINDOW_H

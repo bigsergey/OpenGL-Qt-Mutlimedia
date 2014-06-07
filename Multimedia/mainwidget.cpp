@@ -4,6 +4,13 @@ MainWidget::MainWidget(QWidget *parent) :
     QGLWidget(parent)
 {
 }
+
+void MainWidget::addTexture(QString path) {
+   textures[textureNumber] = bindTexture
+        (QPixmap(QString(path)), GL_TEXTURE_2D);
+   textureNumber++;
+}
+
 void MainWidget::initializeGL()
 {
     qglClearColor(Qt::black);
@@ -17,6 +24,12 @@ void MainWidget::initializeGL()
 
     static GLfloat lightPosition[4] = { 90, 90, 10, 1.0 };
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+
+    //initialize textures
+    for(int j=0; j<textureNumber; ++j) {
+        textures[j]=bindTexture
+                (QPixmap(QString(":/images/side%1.png").arg(j + 1)), GL_TEXTURE_2D);
+    }
 }
 
 void MainWidget::paintGL()

@@ -1,5 +1,6 @@
 #include "window.h"
 #include "ui_window.h"
+#include "mainwidget.h"
 
 Window::Window(QWidget *parent) :
     QWidget(parent),
@@ -25,10 +26,11 @@ void Window::on_aboutButton_clicked()
 void Window::on_addTextureButton_clicked()
 {
    QString fileName = QFileDialog::getOpenFileName(this,
-        tr("Open Image"), "/home/jana", tr("Image Files (*.png *.jpg *.bmp)"));
+        tr("Open Image"), "", tr("Image Files (*.png *.jpg *.bmp)"));
    if (fileName.isEmpty()) {
        return;
    } else {
        qDebug() << fileName;
+       //MainWidget->addTexture(fileName);
    }
 }

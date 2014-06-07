@@ -16,6 +16,8 @@ SOURCES += main.cpp\
         window.cpp \
     mainwidget.cpp
 
+RESOURCES = textures.qrc
+
 HEADERS  += window.h \
     mainwidget.h
 
