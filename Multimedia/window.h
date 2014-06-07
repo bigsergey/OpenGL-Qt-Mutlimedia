@@ -2,6 +2,9 @@
 #define WINDOW_H
 
 #include <QWidget>
+#include <QDebug>
+#include <QMessageBox>
+#include <QFileDialog>
 
 namespace Ui {
 class Window;
@@ -17,6 +20,8 @@ public:
 
 private slots:
     void on_aboutButton_clicked();
+
+    void on_addTextureButton_clicked();
 
 private:
     Ui::Window *ui;
