@@ -17,6 +17,7 @@ protected:
 private:
     void draw();
 
+
 signals:
 
 public slots:

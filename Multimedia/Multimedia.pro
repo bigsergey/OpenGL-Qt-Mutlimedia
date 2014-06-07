@@ -14,9 +14,11 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         window.cpp \
-    mainwidget.cpp
+    mainwidget.cpp \
+    sceneobject.cpp
 
 HEADERS  += window.h \
-    mainwidget.h
+    mainwidget.h \
+    sceneobject.h
 
 FORMS    += window.ui

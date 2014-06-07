@@ -113,7 +113,7 @@
      </widget>
     </item>
     <item row="2" column="0" colspan="2">
-     <widget class="QListWidget" name="listWidget">
+     <widget class="QListView" name="listView">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Ignored" vsizetype="Expanding">
         <horstretch>0</horstretch>

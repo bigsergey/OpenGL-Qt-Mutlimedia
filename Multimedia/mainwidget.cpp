@@ -3,6 +3,7 @@
 MainWidget::MainWidget(QWidget *parent) :
     QGLWidget(parent)
 {
+
 }
 void MainWidget::initializeGL()
 {
