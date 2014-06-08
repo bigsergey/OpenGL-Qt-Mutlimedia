@@ -15,14 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         window.cpp \
     mainwidget.cpp \
-    sceneobject.cpp \
-    sphere.cpp
+    sceneobject.cpp
 
 RESOURCES = textures.qrc
 
 HEADERS  += window.h \
     mainwidget.h \
-    sceneobject.h \
-    sphere.h
+    sceneobject.h
 
 FORMS    += window.ui
