@@ -8,6 +8,7 @@
 #include <QList>
 #include <QStringListModel>
 #include "sceneobject.h"
+#include "sphere.h"
 
 namespace Ui {
 class Window;

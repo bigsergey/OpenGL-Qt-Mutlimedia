@@ -13,7 +13,7 @@ Window::Window(QWidget *parent) :
         QString objects[]={"Sphere","Surface", "Pyramide", "Cuboid", "Cylinder"};
         for(int i=0; i<5; i++) {
             List << objects[i];
-            sceneObjects.append(new SceneObject(objects[i]));
+            sceneObjects.append(new Sphere(objects[i]));
         }
         model->setStringList(List);
         ui->listView->setModel(model);

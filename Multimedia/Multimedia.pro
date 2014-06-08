@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         window.cpp \
     mainwidget.cpp \
-    sceneobject.cpp
+    sceneobject.cpp \
+    sphere.cpp
 
 HEADERS  += window.h \
     mainwidget.h \
-    sceneobject.h
+    sceneobject.h \
+    sphere.h
 
 FORMS    += window.ui
