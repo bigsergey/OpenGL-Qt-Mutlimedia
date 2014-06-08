@@ -73,23 +73,3 @@ void Window::on_addTextureButton_clicked()
        ui->widget->addTexture(fileName);
    }
 }
-
-
-
-void Window::on_addButton_clicked()
-{
-    // Add button clicked
-       // Adding at the end
-
-       // Get the position
-       int row = model->rowCount();
-
-       // Enable add one or more rows
-       model->insertRow(row);
-
-       // Get the row for Edit mode
-       QModelIndex index = model->index(model->rowCount()-1);
-       model->setData(index, "New object");
-       // Enable item selection and put it edit mode
-       ui->listView->edit(index);
-}

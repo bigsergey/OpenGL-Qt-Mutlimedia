@@ -118,9 +118,6 @@
         </item>
        </layout>
       </widget>
-      <zorder>rotationGroupBox</zorder>
-      <zorder>scaleGroupBox</zorder>
-      <zorder>formLayoutWidget</zorder>
      </widget>
     </item>
     <item row="3" column="0" colspan="2">
@@ -189,7 +186,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QSpinBox" name="RotSpinBox">
+         <widget class="QSpinBox" name="zRotSpinBox">
           <property name="minimum">
            <number>-360</number>
           </property>
@@ -200,12 +197,6 @@
         </item>
        </layout>
       </widget>
-      <zorder>scaleGroupBox</zorder>
-      <zorder>positionGroupBox</zorder>
-      <zorder>positionGroupBox</zorder>
-      <zorder>positionGroupBox</zorder>
-      <zorder>formLayoutWidget_2</zorder>
-      <zorder>scaleGroupBox</zorder>
      </widget>
     </item>
     <item row="4" column="0" colspan="2">
@@ -240,7 +231,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QSpinBox" name="xPosSpinBox_2">
+         <widget class="QSpinBox" name="xScaleSpinBox">
           <property name="minimum">
            <number>0</number>
           </property>
@@ -264,7 +255,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QSpinBox" name="yPosSpinBox_2">
+         <widget class="QSpinBox" name="yScaleSpinBox">
           <property name="minimum">
            <number>0</number>
           </property>
@@ -274,7 +265,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QSpinBox" name="zPosSpinBox_2">
+         <widget class="QSpinBox" name="zScaleSpinBox">
           <property name="minimum">
            <number>0</number>
           </property>
@@ -295,7 +286,7 @@
      </widget>
     </item>
     <item row="7" column="1">
-     <widget class="QComboBox" name="comboBox"/>
+     <widget class="QComboBox" name="modelComboBox"/>
     </item>
     <item row="9" column="0">
      <widget class="QLabel" name="label_4">
@@ -305,7 +296,7 @@
      </widget>
     </item>
     <item row="9" column="1">
-     <widget class="QComboBox" name="comboBox_2"/>
+     <widget class="QComboBox" name="textureComboBox"/>
     </item>
     <item row="11" column="0">
      <widget class="QPushButton" name="addTextureButton">
@@ -322,7 +313,7 @@
      </widget>
     </item>
     <item row="6" column="0" colspan="2">
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="colorGroupBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -353,7 +344,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QSpinBox" name="xPosSpinBox_4">
+         <widget class="QSpinBox" name="rSpinBox">
           <property name="minimum">
            <number>0</number>
           </property>
@@ -377,7 +368,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <widget class="QSpinBox" name="yPosSpinBox_4">
+         <widget class="QSpinBox" name="gSpinBox">
           <property name="minimum">
            <number>0</number>
           </property>
@@ -387,7 +378,7 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QSpinBox" name="zPosSpinBox_4">
+         <widget class="QSpinBox" name="bSpinBox">
           <property name="minimum">
            <number>0</number>
           </property>

@@ -30,8 +30,6 @@ private slots:
     void onAddButtonClicked();
     void onDeleteButtonClicked();
 
-    void on_addButton_clicked();
-
 private:
     Ui::Window *ui;
     QList<SceneObject*> sceneObjects;
