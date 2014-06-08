@@ -13,6 +13,9 @@ void MainWidget::addTexture(QString path) {
    textureNumber++;
    qDebug() << textureNumber;
 }
+void MainWidget::setSceneObjects(QList<SceneObject*> *sceneObjects){
+    this->sceneObjects=sceneObjects;
+}
 
 void MainWidget::initializeGL()
 {
@@ -62,9 +65,116 @@ void MainWidget::resizeGL(int width, int height)
 
 void MainWidget::draw()
 {
+    for(int i=0; i<sceneObjects->count(); i++){
+        if(sceneObjects->at(i)->model==QString("sphere")){
+            drawSphere(sceneObjects->at(i)->x,
+                       sceneObjects->at(i)->y,
+                       sceneObjects->at(i)->z,
+                       sceneObjects->at(i)->rotX,
+                       sceneObjects->at(i)->rotY,
+                       sceneObjects->at(i)->rotZ,
+                       sceneObjects->at(i)->sX,
+                       sceneObjects->at(i)->sY,
+                       sceneObjects->at(i)->sZ,
+                       sceneObjects->at(i)->r,
+                       sceneObjects->at(i)->g,
+                       sceneObjects->at(i)->b,
+                       sceneObjects->at(i)->texture);
+        }else if(sceneObjects->at(i)->model==QString("cuboid")){
+            drawCuboid(sceneObjects->at(i)->x,
+                       sceneObjects->at(i)->y,
+                       sceneObjects->at(i)->z,
+                       sceneObjects->at(i)->rotX,
+                       sceneObjects->at(i)->rotY,
+                       sceneObjects->at(i)->rotZ,
+                       sceneObjects->at(i)->sX,
+                       sceneObjects->at(i)->sY,
+                       sceneObjects->at(i)->sZ,
+                       sceneObjects->at(i)->r,
+                       sceneObjects->at(i)->g,
+                       sceneObjects->at(i)->b,
+                       sceneObjects->at(i)->texture);
+        }else if(sceneObjects->at(i)->model==QString("cylinder")){
+            drawCylinder(sceneObjects->at(i)->x,
+                       sceneObjects->at(i)->y,
+                       sceneObjects->at(i)->z,
+                       sceneObjects->at(i)->rotX,
+                       sceneObjects->at(i)->rotY,
+                       sceneObjects->at(i)->rotZ,
+                       sceneObjects->at(i)->sX,
+                       sceneObjects->at(i)->sY,
+                       sceneObjects->at(i)->sZ,
+                       sceneObjects->at(i)->r,
+                       sceneObjects->at(i)->g,
+                       sceneObjects->at(i)->b,
+                       sceneObjects->at(i)->texture);
+        }else if(sceneObjects->at(i)->model==QString("surface")){
+            drawSurface(sceneObjects->at(i)->x,
+                       sceneObjects->at(i)->y,
+                       sceneObjects->at(i)->z,
+                       sceneObjects->at(i)->rotX,
+                       sceneObjects->at(i)->rotY,
+                       sceneObjects->at(i)->rotZ,
+                       sceneObjects->at(i)->sX,
+                       sceneObjects->at(i)->sY,
+                       sceneObjects->at(i)->sZ,
+                       sceneObjects->at(i)->r,
+                       sceneObjects->at(i)->g,
+                       sceneObjects->at(i)->b,
+                       sceneObjects->at(i)->texture);
+        }else if(sceneObjects->at(i)->model==QString("pyramid")){
+            testdraw(sceneObjects->at(i)->x,
+                       sceneObjects->at(i)->y,
+                       sceneObjects->at(i)->z,
+                       sceneObjects->at(i)->rotX,
+                       sceneObjects->at(i)->rotY,
+                       sceneObjects->at(i)->rotZ,
+                       sceneObjects->at(i)->sX,
+                       sceneObjects->at(i)->sY,
+                       sceneObjects->at(i)->sZ,
+                       sceneObjects->at(i)->r,
+                       sceneObjects->at(i)->g,
+                       sceneObjects->at(i)->b,
+                       sceneObjects->at(i)->texture);
+        }else if(sceneObjects->at(i)->model==QString("light")){
+            drawLight(sceneObjects->at(i)->x,
+                       sceneObjects->at(i)->y,
+                       sceneObjects->at(i)->z,
+                       sceneObjects->at(i)->rotX,
+                       sceneObjects->at(i)->rotY,
+                       sceneObjects->at(i)->rotZ,
+                       sceneObjects->at(i)->sX,
+                       sceneObjects->at(i)->sY,
+                       sceneObjects->at(i)->sZ,
+                       sceneObjects->at(i)->r,
+                       sceneObjects->at(i)->g,
+                       sceneObjects->at(i)->b,
+                       sceneObjects->at(i)->texture);
+        }
+    }
     if(textureNumber>6) {
         testdraw(0,0,0,0,0,0,0,0,0,0,0,0,QString(""));
     }
+}
+
+
+void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+
+}
+void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+
+}
+void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+
+}
+void MainWidget::drawSurface(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+
+}
+void MainWidget::drawPyramid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+
+}
+void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+
 }
 
 void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){

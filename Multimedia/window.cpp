@@ -7,6 +7,7 @@ Window::Window(QWidget *parent) :
     ui(new Ui::Window)
 {
     ui->setupUi(this);
+    ui->widget->setSceneObjects(&sceneObjects);
     //init comboBox with models
     ui->modelComboBox->addItem((QString) "surface");
     ui->modelComboBox->addItem((QString) "cuboid");
@@ -82,8 +83,8 @@ void Window::onListViewItemClicked( const QItemSelection & selection)
     ui->rSpinBox->setValue(activeObject->r);
     ui->gSpinBox->setValue(activeObject->g);
     ui->bSpinBox->setValue(activeObject->b);
-    if(ui->modelComboBox->findText(activeObject->model)>=0)ui->modelComboBox->setCurrentIndex(ui->modelComboBox->findText(activeObject->model));
-    if(ui->textureComboBox->findText(activeObject->texture)>=0)ui->textureComboBox->setCurrentIndex(ui->textureComboBox->findText(activeObject->texture));
+    ui->modelComboBox->setCurrentIndex(ui->modelComboBox->findText(activeObject->model));
+    ui->textureComboBox->setCurrentIndex(ui->textureComboBox->findText(activeObject->texture));
 
 
 }
@@ -127,7 +128,13 @@ void Window::on_aboutButton_clicked()
 void Window::onDeleteButtonClicked(){
     if(ui->listView->currentIndex().row()){
         sceneObjects.removeAt(ui->listView->currentIndex().row());
-        model->removeRow(ui->listView->currentIndex().row());
+
+        int index = ui->listView->currentIndex().row();
+        ui->listView->reset();
+        model->removeRow(index);
+        ui->listView->setModel(model);
+        activeObject = sceneObjects.at(0);
+        ui->listView->setCurrentIndex(ui->listView->indexAt(QPoint(0,0)));
     }
 }
 void Window::on_addTextureButton_clicked()
@@ -142,58 +149,71 @@ void Window::on_addTextureButton_clicked()
 }
 
 void Window::setX(int x) {
-    qDebug() << x;
     this->activeObject->x = x;
+    ui->widget->updateGL();
 }
 
 void Window::setY(int y) {
     this->activeObject->y = y;
+    ui->widget->updateGL();
 }
 
 void Window::setZ(int z) {
     this->activeObject->z = z;
+    ui->widget->updateGL();
 }
 
 void Window::setRotX(int rotX) {
     this->activeObject->rotX = rotX;
+    ui->widget->updateGL();
 }
 
 void Window::setRotY(int rotY) {
     this->activeObject->rotY = rotY;
+    ui->widget->updateGL();
 }
 
 void Window::setRotZ(int rotZ) {
     this->activeObject->rotZ = rotZ;
+    ui->widget->updateGL();
 }
 
 void Window::setSX(int sX) {
     this->activeObject->sX = sX;
+    ui->widget->updateGL();
 }
 
 void Window::setSY(int sY) {
     this->activeObject->sY= sY;
+    ui->widget->updateGL();
 }
 
 void Window::setSZ(int sZ) {
     this->activeObject->sZ = sZ;
+    ui->widget->updateGL();
 }
 
 void Window::setR(int r) {
     this->activeObject->r = r;
+    ui->widget->updateGL();
 }
 
 void Window::setG(int g) {
     this->activeObject->g = g;
+    ui->widget->updateGL();
 }
 
 void Window::setB(int b) {
     this->activeObject->b = b;
+    ui->widget->updateGL();
 }
 
 void Window::setModel(QString model) {
     this->activeObject->model = model;
+    ui->widget->updateGL();
 }
 
 void Window::setTexture(QString texture) {
     this->activeObject->texture = texture;
+    ui->widget->updateGL();
 }

@@ -5,13 +5,16 @@
 #include <QGLWidget>
 #include <QString>
 #include <QDebug>
+#include "sceneobject.h"
+#include <QList>
 
 class MainWidget : public QGLWidget
 {
     Q_OBJECT
 public:
     explicit MainWidget(QWidget *parent = 0);
-    void draw();
+    void setSceneObjects(QList<SceneObject*> *sceneObjects);
+
 
 protected:
     void initializeGL();
@@ -21,7 +24,14 @@ protected:
     int textureNumber = 6;
 
 private:
-
+    QList<SceneObject*> * sceneObjects;
+    void draw();
+    void drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
+    void drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
+    void drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
+    void drawSurface(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
+    void drawPyramid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
+    void drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
     void testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
 
 
