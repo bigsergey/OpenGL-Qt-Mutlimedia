@@ -8,10 +8,10 @@ MainWidget::MainWidget(QWidget *parent) :
 
 
 void MainWidget::addTexture(QString path) {
-   textures[textureNumber] = bindTexture
+    QStringList pieces = path.split( "/" );
+    QString neededWord = pieces.value( pieces.length() - 1 );
+    textures[neededWord] = bindTexture
         (QPixmap(QString(path)), GL_TEXTURE_2D);
-   textureNumber++;
-   qDebug() << textureNumber;
 }
 
 void MainWidget::initializeGL()
@@ -30,10 +30,16 @@ void MainWidget::initializeGL()
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 
     //initialize textures
-    for(int j=0; j<textureNumber; ++j) {
-        textures[j]=bindTexture
+    for(int j=0; j<6; ++j) {
+        textures[QString(":/images/side%1.png").arg(j + 1)]=bindTexture
                 (QPixmap(QString(":/images/side%1.png").arg(j + 1)), GL_TEXTURE_2D);
     }
+    textures["wall.jpg"]=bindTexture
+            (QPixmap(QString(":/images/wall.jpg")), GL_TEXTURE_2D);
+    textures["blue.png"]=bindTexture
+            (QPixmap(QString(":/images/blue.png")), GL_TEXTURE_2D);
+
+
 }
 
 void MainWidget::paintGL()
@@ -62,13 +68,12 @@ void MainWidget::resizeGL(int width, int height)
 
 void MainWidget::draw()
 {
-    if(textureNumber>6) {
+    if(textures.size()>6) {
         testdraw(0,0,0,0,0,0,0,0,0,0,0,0,QString(""));
     }
 }
 
 void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
-    qDebug() << "tutrej";
     qglColor(Qt::red);
     glBegin(GL_QUADS);
         glNormal3f(0,0,-1);
