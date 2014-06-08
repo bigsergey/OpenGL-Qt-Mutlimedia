@@ -31,7 +31,7 @@ void MainWidget::initializeGL()
 
     //initialize textures
     for(int j=0; j<6; ++j) {
-        textures[QString(":/images/side%1.png").arg(j + 1)]=bindTexture
+        textures[QString("side%1.png").arg(j + 1)]=bindTexture
                 (QPixmap(QString(":/images/side%1.png").arg(j + 1)), GL_TEXTURE_2D);
     }
     textures["wall.jpg"]=bindTexture
