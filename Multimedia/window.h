@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QDebug>
+#include <QKeyEvent>
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QList>
@@ -32,6 +33,9 @@ private slots:
     void setX(int);
     void setY(int);
     void setZ(int);
+    void addX(int);
+    void addY(int);
+    void addZ(int);
     void setRotX(int);
     void setRotY(int);
     void setRotZ(int);
@@ -43,11 +47,21 @@ private slots:
     void setB(int);
     void setModel(QString);
     void setTexture(QString);
+    void keyReleaseEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event);
+
 
 private:
     Ui::Window *ui;
     QList<SceneObject*> sceneObjects;
     QStringListModel *model;
+    int timerId;
+    int moveX, moveY, moveZ;
+    int MOVE;
+
+protected:
+    void timerEvent(QTimerEvent *event);
+
 };
 
 
