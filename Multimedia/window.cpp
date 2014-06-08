@@ -33,6 +33,7 @@ Window::Window(QWidget *parent) :
 
 void Window::onListViewItemClicked( const QItemSelection & selection)
 {
+    ui->widget->draw();
     sceneObjects.at(selection.indexes().at(0).row())->doSomething(this);
 }
 

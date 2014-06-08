@@ -6,6 +6,7 @@ MainWidget::MainWidget(QWidget *parent) :
 
 }
 
+
 void MainWidget::addTexture(QString path) {
    textures[textureNumber] = bindTexture
         (QPixmap(QString(path)), GL_TEXTURE_2D);
@@ -59,6 +60,10 @@ void MainWidget::resizeGL(int width, int height)
 
 void MainWidget::draw()
 {
+    testdraw(0,0,0,0,0,0,0,0,0,0,0,0,QString(""));
+}
+
+void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
     qglColor(Qt::red);
     glBegin(GL_QUADS);
         glNormal3f(0,0,-1);

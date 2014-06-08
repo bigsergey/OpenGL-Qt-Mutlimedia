@@ -11,6 +11,7 @@ class MainWidget : public QGLWidget
     Q_OBJECT
 public:
     explicit MainWidget(QWidget *parent = 0);
+    void draw();
 
 protected:
     void initializeGL();
@@ -20,7 +21,8 @@ protected:
     int textureNumber = 6;
 
 private:
-    void draw();
+
+    void testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
 
 
 signals:
