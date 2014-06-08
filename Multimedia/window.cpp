@@ -7,8 +7,17 @@ Window::Window(QWidget *parent) :
     ui(new Ui::Window)
 {
     ui->setupUi(this);
+    //init comboBox with models
+    ui->modelComboBox->addItem((QString) "surface");
+    ui->modelComboBox->addItem((QString) "cuboid");
+    ui->modelComboBox->addItem((QString) "cylinder");
+    ui->modelComboBox->addItem((QString) "pyramid");
+    ui->modelComboBox->addItem((QString) "sphere");
+
+
     // Create model
         model = new QStringListModel(this);
+
 
         QStringList List;
             List << QString("Light");
