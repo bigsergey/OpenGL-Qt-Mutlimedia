@@ -18,6 +18,8 @@ SOURCES += main.cpp\
     sceneobject.cpp \
     sphere.cpp
 
+RESOURCES = textures.qrc
+
 HEADERS  += window.h \
     mainwidget.h \
     sceneobject.h \
