@@ -74,5 +74,3 @@ void Window::on_addTextureButton_clicked()
        ui->widget->addTexture(fileName);
    }
 }
-
-
