@@ -28,6 +28,8 @@ private slots:
     void on_addTextureButton_clicked();
     void onListViewItemClicked( const QItemSelection & selection);
 
+    void on_addButton_clicked();
+
 private:
     Ui::Window *ui;
     QList<SceneObject*> sceneObjects;
