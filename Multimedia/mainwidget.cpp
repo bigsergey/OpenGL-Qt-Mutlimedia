@@ -16,6 +16,7 @@ void MainWidget::addTexture(QString path) {
 
 void MainWidget::initializeGL()
 {
+    qDebug() << "initGL";
     qglClearColor(Qt::black);
 
     glEnable(GL_DEPTH_TEST);
@@ -25,7 +26,7 @@ void MainWidget::initializeGL()
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
 
-    static GLfloat lightPosition[4] = { 90, 90, 10, 1.0 };
+    static GLfloat lightPosition[4] = { 0, 0, 10, 1.0 };
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 
     //initialize textures
@@ -37,6 +38,7 @@ void MainWidget::initializeGL()
 
 void MainWidget::paintGL()
 {
+    qDebug() << "paintGl";
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
@@ -60,10 +62,13 @@ void MainWidget::resizeGL(int width, int height)
 
 void MainWidget::draw()
 {
-    testdraw(0,0,0,0,0,0,0,0,0,0,0,0,QString(""));
+    if(textureNumber>6) {
+        testdraw(0,0,0,0,0,0,0,0,0,0,0,0,QString(""));
+    }
 }
 
 void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+    qDebug() << "tutrej";
     qglColor(Qt::red);
     glBegin(GL_QUADS);
         glNormal3f(0,0,-1);

@@ -20,7 +20,7 @@ class Window : public QWidget
 public:
     explicit Window(QWidget *parent = 0);
     ~Window();
-
+    SceneObject *activeObject;
 
 private slots:
     void on_aboutButton_clicked();
@@ -29,11 +29,26 @@ private slots:
     void onListViewItemClicked( const QItemSelection & selection);
     void onAddButtonClicked();
     void onDeleteButtonClicked();
+    void setX(int);
+    void setY(int);
+    void setZ(int);
+    void setRotX(int);
+    void setRotY(int);
+    void setRotZ(int);
+    void setSX(int);
+    void setSY(int);
+    void setSZ(int);
+    void setR(int);
+    void setG(int);
+    void setB(int);
+    void setModel(QString);
+    void setTexture(QString);
 
 private:
     Ui::Window *ui;
     QList<SceneObject*> sceneObjects;
     QStringListModel *model;
 };
+
 
 #endif // WINDOW_H

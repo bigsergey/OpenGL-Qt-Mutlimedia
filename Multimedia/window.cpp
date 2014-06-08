@@ -26,15 +26,19 @@ Window::Window(QWidget *parent) :
                     this, SLOT(onListViewItemClicked(QItemSelection)));
         connect(ui->addButton, SIGNAL(released()), this, SLOT(onAddButtonClicked()));
         connect(ui->deleteButton, SIGNAL(released()), this, SLOT(onDeleteButtonClicked()));
-
+        connect(ui->xPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setX(int)));
+        connect(ui->yPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setY(int)));
+        connect(ui->zPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setZ(int)));
 
 }
 
 
 void Window::onListViewItemClicked( const QItemSelection & selection)
 {
-    ui->widget->draw();
-    sceneObjects.at(selection.indexes().at(0).row())->doSomething(this);
+
+    ui->widget->updateGL();
+    activeObject = sceneObjects.at(selection.indexes().at(0).row());
+
 }
 
 void Window::onAddButtonClicked(){
@@ -73,4 +77,61 @@ void Window::on_addTextureButton_clicked()
    } else {
        ui->widget->addTexture(fileName);
    }
+}
+
+void Window::setX(int x) {
+    qDebug() << x;
+    this->activeObject->x = x;
+}
+
+void Window::setY(int y) {
+    this->activeObject->y = y;
+}
+
+void Window::setZ(int z) {
+    this->activeObject->z = z;
+}
+
+void Window::setRotX(int rotX) {
+    this->activeObject->rotX = rotX;
+}
+
+void Window::setRotY(int rotY) {
+    this->activeObject->rotY = rotY;
+}
+
+void Window::setRotZ(int rotZ) {
+    this->activeObject->rotZ = rotZ;
+}
+
+void Window::setSX(int sX) {
+    this->activeObject->sX = sX;
+}
+
+void Window::setSY(int sY) {
+    this->activeObject->sY= sY;
+}
+
+void Window::setSZ(int sZ) {
+    this->activeObject->sZ = sZ;
+}
+
+void Window::setR(int r) {
+    this->activeObject->r = r;
+}
+
+void Window::setG(int g) {
+    this->activeObject->g = g;
+}
+
+void Window::setB(int b) {
+    this->activeObject->b = b;
+}
+
+void Window::setModel(QString model) {
+    this->activeObject->model = model;
+}
+
+void Window::setTexture(QString texture) {
+    this->activeObject->texture = texture;
 }
