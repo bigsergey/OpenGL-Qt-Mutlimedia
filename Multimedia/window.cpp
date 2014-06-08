@@ -28,7 +28,17 @@ Window::Window(QWidget *parent) :
         connect(ui->xPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setX(int)));
         connect(ui->yPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setY(int)));
         connect(ui->zPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setZ(int)));
-
+        connect(ui->xRotSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotX(int)));
+        connect(ui->yRotSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotY(int)));
+        connect(ui->zRotSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotZ(int)));
+        connect(ui->xScaleSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setSX(int)));
+        connect(ui->yScaleSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setSY(int)));
+        connect(ui->zScaleSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setSZ(int)));
+        connect(ui->rSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setR(int)));
+        connect(ui->gSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setG(int)));
+        connect(ui->bSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setB(int)));
+        connect(ui->modelComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setModel(QString)));
+        connect(ui->textureComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setTexture(QString)));
 }
 
 
