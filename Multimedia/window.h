@@ -27,6 +27,8 @@ private slots:
 
     void on_addTextureButton_clicked();
     void onListViewItemClicked( const QItemSelection & selection);
+    void onAddButtonClicked();
+    void onDeleteButtonClicked();
 
     void on_addButton_clicked();
 

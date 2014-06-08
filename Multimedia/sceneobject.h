@@ -7,8 +7,6 @@ class SceneObject
 {
 public:
     SceneObject();
-    SceneObject(QString name);
-    QString name;
     void doSomething(QWidget* widget);
 };
 
