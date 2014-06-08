@@ -25,12 +25,24 @@ void MainWidget::initializeGL()
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glEnable(GL_LIGHT1);
 
-    static GLfloat lightPosition[4] = { 0, 0, 10, 1.0 };
-    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+    glEnable(GL_LIGHTING);
+       GLfloat ambientLight[]={0.5f, 0.5f, 0.5f, 0.5f};
+       GLfloat diffuseLight[]={0.7f, 0.7f, 0.7f, 1.0f};
+       GLfloat specular[]={1.0f, 1.0f, 1.0f, 1.0f};
+       GLfloat specref[]={1.0f, 1.0f, 1.0f, 1.0f};
+       glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight);
+       glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
+       glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
+       glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
+       //
+       glEnable(GL_LIGHT0);
+       glEnable(GL_COLOR_MATERIAL);
+       glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+       glMaterialfv(GL_FRONT, GL_SPECULAR, specref);
+       glMateriali(GL_FRONT, GL_SHININESS, 128);
+       GLfloat lightPos[]={0.0f, 0.0f, 0.0f, 0.5f};
+       glLightfv(GL_LIGHT0,GL_POSITION, lightPos );
 
     //initialize textures
     for(int j=0; j<6; ++j) {
@@ -182,7 +194,7 @@ void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, in
 }
 
 void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
-    qglColor(Qt::red);
+    //qglColor(Qt::red);
     glBegin(GL_QUADS);
         glNormal3f(0,0,-1);
         glVertex3f(-1,-1,0);
