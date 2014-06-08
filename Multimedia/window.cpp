@@ -15,6 +15,10 @@ Window::Window(QWidget *parent) :
     ui->modelComboBox->addItem((QString) "pyramid");
     ui->modelComboBox->addItem((QString) "sphere");
 
+    //init combobox with textures
+    QStringList textures;
+    textures << "side1.png" << "side2.png" << "side3.png" << "side4.png" << "side5.png" << "side6.png" << "wall.jpeg" << "blue.png";
+    ui->textureComboBox->addItems(textures);
 
     // Create model
         model = new QStringListModel(this);
@@ -139,11 +143,15 @@ void Window::onDeleteButtonClicked(){
 }
 void Window::on_addTextureButton_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(this,
+   QString fileName = QFileDialog::getOpenFileName(this,
         tr("Open Image"), "", tr("Image Files (*.png *.jpg *.bmp)"));
+   QStringList pieces = fileName.split( "/" );
+   QString neededWord = pieces.value( pieces.length() - 1 );
+   qDebug() <<neededWord;
    if (fileName.isEmpty()) {
        return;
    } else {
+       ui->textureComboBox->addItem(neededWord);
        ui->widget->addTexture(fileName);
    }
 }
