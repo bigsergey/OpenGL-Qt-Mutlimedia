@@ -13,7 +13,21 @@ Window::Window(QWidget *parent) :
         QStringList List;
             List << QString("Light");
             SceneObject* light=new SceneObject();
-            sceneObjects.append(light);
+            light->x=0;
+            light->y=0;
+            light->z=0;
+            light->rotX=0;
+            light->rotY=0;
+            light->rotZ=0;
+            light->sX=0;
+            light->sY=0;
+            light->sZ=0;
+            light->r=0;
+            light->g=0;
+            light->b=0;
+            light->model = QString("light");
+            light->texture=QString();
+        sceneObjects.append(light);
         model->setStringList(List);
 
         ui->listView->setModel(model);
@@ -35,8 +49,23 @@ Window::Window(QWidget *parent) :
 void Window::onListViewItemClicked( const QItemSelection & selection)
 {
 
-    ui->widget->updateGL();
+    //ui->widget->updateGL();
     activeObject = sceneObjects.at(selection.indexes().at(0).row());
+    ui->xPosSpinBox->setValue(activeObject->x);
+    ui->yPosSpinBox->setValue(activeObject->y);
+    ui->zPosSpinBox->setValue(activeObject->z);
+    ui->xRotSpinBox->setValue(activeObject->rotX);
+    ui->yRotSpinBox->setValue(activeObject->rotY);
+    ui->zRotSpinBox->setValue(activeObject->rotZ);
+    ui->xScaleSpinBox->setValue(activeObject->sX);
+    ui->yScaleSpinBox->setValue(activeObject->sY);
+    ui->zScaleSpinBox->setValue(activeObject->sZ);
+    ui->rSpinBox->setValue(activeObject->r);
+    ui->gSpinBox->setValue(activeObject->g);
+    ui->bSpinBox->setValue(activeObject->b);
+    if(ui->modelComboBox->findText(activeObject->model)>=0)ui->modelComboBox->setCurrentIndex(ui->modelComboBox->findText(activeObject->model));
+    if(ui->textureComboBox->findText(activeObject->texture)>=0)ui->textureComboBox->setCurrentIndex(ui->textureComboBox->findText(activeObject->texture));
+
 
 }
 
@@ -45,7 +74,20 @@ void Window::onAddButtonClicked(){
         model->insertRow(row);
         QModelIndex index = model->index(row);
         model->setData(index, "Empty Object");
-        sceneObjects.append(new SceneObject());
+        SceneObject* sceneObject=new SceneObject();
+        sceneObject->x=0;
+        sceneObject->y=0;
+        sceneObject->z=0;
+        sceneObject->rotX=0;
+        sceneObject->rotY=0;
+        sceneObject->rotZ=0;
+        sceneObject->sX=0;
+        sceneObject->sY=0;
+        sceneObject->sZ=0;
+        sceneObject->r=0;
+        sceneObject->g=0;
+        sceneObject->b=0;
+        sceneObjects.append(sceneObject);
         ui->listView->edit(index);
 }
 
