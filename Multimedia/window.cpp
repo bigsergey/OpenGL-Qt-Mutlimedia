@@ -11,12 +11,11 @@ Window::Window(QWidget *parent) :
         model = new QStringListModel(this);
 
         QStringList List;
-//        QString objects[]={"Sphere","Surface", "Pyramide", "Cuboid", "Cylinder"};
-//        for(int i=0; i<5; i++) {
-//            List << objects[i];
-//            sceneObjects.append(new SceneObject(objects[i]));
-//        }
+            List << QString("Light");
+            SceneObject* light=new SceneObject();
+            sceneObjects.append(light);
         model->setStringList(List);
+
         ui->listView->setModel(model);
         ui->listView->
                 setEditTriggers(QAbstractItemView::AnyKeyPressed |
@@ -65,8 +64,10 @@ void Window::on_aboutButton_clicked()
 }
 
 void Window::onDeleteButtonClicked(){
-    model->removeRows(ui->listView->currentIndex().row(),1);
-    sceneObjects.removeAt(ui->listView->currentIndex().row());
+    if(ui->listView->currentIndex().row()){
+        sceneObjects.removeAt(ui->listView->currentIndex().row());
+        model->removeRow(ui->listView->currentIndex().row());
+    }
 }
 void Window::on_addTextureButton_clicked()
 {
