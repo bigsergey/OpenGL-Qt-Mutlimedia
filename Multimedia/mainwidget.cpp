@@ -134,7 +134,7 @@ void MainWidget::draw()
                        sceneObjects->at(i)->b,
                        sceneObjects->at(i)->texture);
         }else if(sceneObjects->at(i)->model==QString("pyramid")){
-            testdraw(sceneObjects->at(i)->x,
+            drawPyramid(sceneObjects->at(i)->x,
                        sceneObjects->at(i)->y,
                        sceneObjects->at(i)->z,
                        sceneObjects->at(i)->rotX,
@@ -858,14 +858,6 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
 void MainWidget::drawSurface(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
     }
 void MainWidget::drawPyramid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
-
-}
-void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
-
-}
-
-void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
-    qDebug() << texture;
     if(texture != "") {
         qDebug() << texture;
         glEnable(GL_TEXTURE_2D);
@@ -929,4 +921,7 @@ void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int
         glVertex3f(0,0,1.2);
     glEnd();
     glPopMatrix();
+}
+void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+
 }
