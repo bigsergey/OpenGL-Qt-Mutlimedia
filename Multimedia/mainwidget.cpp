@@ -169,6 +169,14 @@ void MainWidget::draw()
 
 void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
 
+    if(texture != "") {
+        qDebug() << texture;
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, bindTexture
+                      (QPixmap(textures[texture]), GL_TEXTURE_2D));
+    } else {
+         glDisable(GL_TEXTURE_2D);
+    }
     float radius = 1.0f;
     int subdivisionsHeight = 40;
     int subdivisionsAxis = 40;
@@ -185,6 +193,9 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
         for(int j = 0; j < subdivisionsAxis; j++)
         {
             //
+            glTexCoord2f((float)(j * 2 * M_PI * radius / subdivisionsAxis),
+                         ((float)(i + 1) / subdivisionsHeight));
+
             glVertex3f(
                 radius * sinf(i * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
                 radius * sinf(i * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
@@ -197,24 +208,12 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
                 sinf(i * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
                 cosf(i * (M_PI / subdivisionsHeight))
             );
-/*
-            tangents->push_back(glm::vec3(
-                sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * cosf(j * 2 * M_PI / subdivisionsAxis)),
-                sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * sinf(j * 2 * M_PI / subdivisionsAxis)),
-                cosf((i + 0.5f) * (M_PI / subdivisionsHeight))
-            ));
 
-            bitangents->push_back(glm::vec3(
-                sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
-                sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
-                cosf(i * (M_PI / subdivisionsHeight))
-            ));
-
-            texCoords->push_back(glm::vec2(
+            glTexCoord2f(
                 (float)(j * 2 * M_PI * radius / subdivisionsAxis),
-                (float)i / subdivisionsHeight
-                ));
-*/
+                ((float)(i + 1) / subdivisionsHeight)
+            );
+
             glVertex3f(
                 radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
                 radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
@@ -226,24 +225,12 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
                 sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
                 cosf((i + 1) * (M_PI / subdivisionsHeight))
             );
-/*
-            tangents->push_back(glm::vec3(
-                sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * cosf(j * 2 * M_PI / subdivisionsAxis)),
-                sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * sinf(j * 2 * M_PI / subdivisionsAxis)),
-                cosf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight))
-            ));
 
-            bitangents->push_back(glm::vec3(
-                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
-                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
-                cosf((i + 1) * (M_PI / subdivisionsHeight))
-            ));
+            glTexCoord2f(
+                (float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis),
+                ((float)i / subdivisionsHeight)
+            );
 
-            texCoords->push_back(glm::vec2(
-                (float)(j * 2 * M_PI * radius / subdivisionsAxis),
-                ((float)(i + 1) / subdivisionsHeight)
-            ));
-*/
             glVertex3f(
                 radius * sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
                 radius * sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
@@ -255,25 +242,12 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
                 sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
                 cosf(i * (M_PI / subdivisionsHeight))
             );
-/*
-            tangents->push_back(glm::vec3(
-                sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis)),
-                sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis)),
-                cosf((i + 0.5f) * (M_PI / subdivisionsHeight))
-            ));
 
-            bitangents->push_back(glm::vec3(
-                sinf(i * (M_PI / subdivisionsHeight)) * cosf(((j + 1) + 0.25f) * 2 * M_PI / subdivisionsAxis),
-                sinf(i * (M_PI / subdivisionsHeight)) * sinf(((j + 1) + 0.25f) * 2 * M_PI / subdivisionsAxis),
-                cosf(i * (M_PI / subdivisionsHeight))
-            ));
+            glTexCoord2f(
+                (float)(j * 2 * M_PI * radius / subdivisionsAxis),
+                (float)(i + 1) / subdivisionsHeight
+            );
 
-            texCoords->push_back(glm::vec2(
-                (float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis),
-                ((float)i / subdivisionsHeight)
-            ));
-*/
-            //
             glVertex3f(
                 radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
                 radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
@@ -285,24 +259,12 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
                 sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
                 cosf((i + 1) * (M_PI / subdivisionsHeight))
             );
-/*
-            tangents->push_back(glm::vec3(
-                sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * cosf(j * 2 * M_PI / subdivisionsAxis)),
-                sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * sinf(j * 2 * M_PI / subdivisionsAxis)),
-                cosf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight))
-            ));
 
-            bitangents->push_back(glm::vec3(
-                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
-                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
-                cosf((i + 1) * (M_PI / subdivisionsHeight))
-            ));
-
-            texCoords->push_back(glm::vec2(
-                (float)(j * 2 * M_PI * radius / subdivisionsAxis),
+            glTexCoord2f(
+                (float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis),
                 (float)(i + 1) / subdivisionsHeight
-            ));
-*/
+            );
+
             glVertex3f(
                 radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
                 radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
@@ -327,11 +289,15 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
                 cosf((i + 1) * (M_PI / subdivisionsHeight))
             ));
 
-            texCoords->push_back(glm::vec2(
+            glTexCoord2f(
                 (float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis),
                 (float)(i + 1) / subdivisionsHeight
             ));
 */
+            glTexCoord2f(
+                (float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis),
+                (float)i / subdivisionsHeight
+            );
             glVertex3f(
                 radius * sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
                 radius * sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
@@ -356,7 +322,7 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
                 cosf(i * (M_PI / subdivisionsHeight))
             ));
 
-            texCoords->push_back(glm::vec2(
+            glTexCoord2f(
                 (float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis),
                 (float)i / subdivisionsHeight
             ));
@@ -365,6 +331,7 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
     }
     glEnd();
     glPopMatrix();
+
 }
 void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int sY, int sZ, int r, int g, int b, QString texture){
 
