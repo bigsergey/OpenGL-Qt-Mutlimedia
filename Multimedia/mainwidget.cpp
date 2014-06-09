@@ -20,7 +20,7 @@ void MainWidget::setSceneObjects(QList<SceneObject*> *sceneObjects){
 void MainWidget::initializeGL()
 {
     qDebug() << "initGL";
-    glClearColor( 0.74902, 0.847059, 0.847059, 1.0 );
+    glClearColor( 0.74902, 0.847059, 0.62352, 1.0 );
 
         // czyszczenie bufora koloru i bufora głębokości
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -32,13 +32,6 @@ void MainWidget::initializeGL()
 
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-
-
-    static GLfloat lightPosition[4] = { 20, 20, 90, 1 };
-    float ambient[4] = {0.5, 0.5, 0.5, 1};
-    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
-    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
-    glEnable( GL_COLOR_MATERIAL );
 
     //initialize textures
     for(int j=0; j<6; ++j) {
@@ -958,5 +951,16 @@ void MainWidget::drawPyramid(int x, int y, int z, int rotX, int rotY, int rotZ, 
     glPopMatrix();
 }
 void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
-
+    lightPosition[0] = x;
+    lightPosition[1] = y;
+    lightPosition[2] = z;
+    lightPosition[3] = 1;
+    ambient[0] = (float) r/255 * rotX/100;
+    ambient[1] = (float) g/255 * rotX/100;
+    ambient[2] = (float) b/255 * rotX/100;
+    ambient[3] = 1.0;
+    qDebug() << ambient[3];
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
+    glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+    glEnable( GL_COLOR_MATERIAL );
 }

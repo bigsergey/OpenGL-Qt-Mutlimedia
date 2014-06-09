@@ -21,6 +21,8 @@ protected:
     void paintGL();
     void resizeGL(int width, int height);
     QMap <QString, QString> textures;
+    GLfloat lightPosition[4];
+    float ambient[4];
 
 private:
     QList<SceneObject*> * sceneObjects;

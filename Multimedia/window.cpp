@@ -33,18 +33,18 @@ Window::Window(QWidget *parent) :
         QStringList List;
             List << QString("Light");
             SceneObject* light=new SceneObject();
-            light->x=0;
-            light->y=0;
-            light->z=0;
-            light->rotX=0;
+            light->x=20;
+            light->y=20;
+            light->z=10;
+            light->rotX=50;
             light->rotY=0;
             light->rotZ=0;
             light->sX=0;
             light->sY=0;
             light->sZ=0;
-            light->r=0;
-            light->g=0;
-            light->b=0;
+            light->r=180;
+            light->g=180;
+            light->b=180;
             light->model = QString("light");
             light->texture=QString();
         sceneObjects.append(light);
@@ -65,6 +65,7 @@ Window::Window(QWidget *parent) :
         connect(ui->yPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setY(int)));
         connect(ui->zPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setZ(int)));
         connect(ui->xRotSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotX(int)));
+        connect(ui->intensitySpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotX(int)));
         connect(ui->yRotSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotY(int)));
         connect(ui->zRotSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotZ(int)));
         connect(ui->xScaleSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setSX(int)));
@@ -97,13 +98,17 @@ void Window::onListViewItemClicked( const QItemSelection & selection)
         ui->textureLabel->hide();
         ui->rotationGroupBox->hide();
         ui->scaleGroupBox->hide();
+        ui->intensityLabel->show();
+        ui->intensitySpinBox->show();
     } else {
         ui->modelComboBox->show();
         ui->textureComboBox->show();
         ui->modelLabel->show();
         ui->textureLabel->show();
         ui->rotationGroupBox->show();
-        ui->scaleGroupBox->show();
+        ui->scaleGroupBox->show();\
+        ui->intensityLabel->hide();
+        ui->intensitySpinBox->hide();
     }
     ui->xPosSpinBox->setValue(activeObject->x);
     ui->yPosSpinBox->setValue(activeObject->y);
@@ -120,6 +125,9 @@ void Window::onListViewItemClicked( const QItemSelection & selection)
     if(activeObject->model != "light") {
         ui->modelComboBox->setCurrentIndex(ui->modelComboBox->findText(activeObject->model));
         ui->textureComboBox->setCurrentIndex(ui->textureComboBox->findText(activeObject->texture));
+    } else {
+        //rotX jest wykorzystywany zamiast intensywnosci
+        ui->intensitySpinBox->setValue(activeObject->rotX);
     }
 
 
