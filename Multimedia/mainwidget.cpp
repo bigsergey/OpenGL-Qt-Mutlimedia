@@ -21,7 +21,10 @@ void MainWidget::setSceneObjects(QList<SceneObject*> *sceneObjects){
 void MainWidget::initializeGL()
 {
     qDebug() << "initGL";
-    qglClearColor(Qt::black);
+    glClearColor( 1.0, 1.0, 1.0, 1.0 );
+
+        // czyszczenie bufora koloru i bufora głębokości
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -30,10 +33,11 @@ void MainWidget::initializeGL()
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
-    static GLfloat lightPosition[4] = { 90, 90, 90, 1 };
+    static GLfloat lightPosition[4] = { 20, 20, 90, 1 };
     float ambient[4] = {0.5, 0.5, 0.5, 1};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+    glEnable( GL_COLOR_MATERIAL );
 
     //initialize textures
     for(int j=0; j<6; ++j) {
@@ -172,7 +176,7 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
     int subdivisionsHeight = 40;
     int subdivisionsAxis = 40;
     glPushMatrix();
-    glColor3f((float) r/255,  (float)g/255,  (float)g/255);
+    glColor3f((float) r/255,  (float)g/255,  (float)b/255);
     glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
