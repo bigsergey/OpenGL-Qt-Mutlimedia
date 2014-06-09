@@ -1,3 +1,4 @@
+#include <qmath.h>
 #include "mainwidget.h"
 
 MainWidget::MainWidget(QWidget *parent) :
@@ -176,9 +177,282 @@ void MainWidget::draw()
 
 void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
 
+    float radius = 1.0f;
+    int subdivisionsHeight = 40;
+    int subdivisionsAxis = 40;
+    glBegin(GL_TRIANGLES);
+    for(int i = 0; i < subdivisionsHeight; i++)
+    {
+        for(int j = 0; j < subdivisionsAxis; j++)
+        {
+            //
+            glVertex3f(
+                radius * sinf(i * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
+                radius * sinf(i * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
+                radius * cosf(i * (M_PI / subdivisionsHeight))
+            );
+            //vertices->push_back(1.0f);
+
+            glNormal3f(
+                sinf(i * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
+                sinf(i * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
+                cosf(i * (M_PI / subdivisionsHeight))
+            );
+/*
+            tangents->push_back(glm::vec3(
+                sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * cosf(j * 2 * M_PI / subdivisionsAxis)),
+                sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * sinf(j * 2 * M_PI / subdivisionsAxis)),
+                cosf((i + 0.5f) * (M_PI / subdivisionsHeight))
+            ));
+
+            bitangents->push_back(glm::vec3(
+                sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                cosf(i * (M_PI / subdivisionsHeight))
+            ));
+
+            texCoords->push_back(glm::vec2(
+                (float)(j * 2 * M_PI * radius / subdivisionsAxis),
+                (float)i / subdivisionsHeight
+                ));
+*/
+            glVertex3f(
+                radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
+                radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
+                radius * cosf((i + 1) * (M_PI / subdivisionsHeight))
+            );
+
+            glNormal3f(
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
+                cosf((i + 1) * (M_PI / subdivisionsHeight))
+            );
+/*
+            tangents->push_back(glm::vec3(
+                sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * cosf(j * 2 * M_PI / subdivisionsAxis)),
+                sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * sinf(j * 2 * M_PI / subdivisionsAxis)),
+                cosf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight))
+            ));
+
+            bitangents->push_back(glm::vec3(
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                cosf((i + 1) * (M_PI / subdivisionsHeight))
+            ));
+
+            texCoords->push_back(glm::vec2(
+                (float)(j * 2 * M_PI * radius / subdivisionsAxis),
+                ((float)(i + 1) / subdivisionsHeight)
+            ));
+*/
+            glVertex3f(
+                radius * sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                radius * sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                radius * cosf(i * (M_PI / subdivisionsHeight))
+            );
+
+            glNormal3f(
+                sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                cosf(i * (M_PI / subdivisionsHeight))
+            );
+/*
+            tangents->push_back(glm::vec3(
+                sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis)),
+                sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis)),
+                cosf((i + 0.5f) * (M_PI / subdivisionsHeight))
+            ));
+
+            bitangents->push_back(glm::vec3(
+                sinf(i * (M_PI / subdivisionsHeight)) * cosf(((j + 1) + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                sinf(i * (M_PI / subdivisionsHeight)) * sinf(((j + 1) + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                cosf(i * (M_PI / subdivisionsHeight))
+            ));
+
+            texCoords->push_back(glm::vec2(
+                (float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis),
+                ((float)i / subdivisionsHeight)
+            ));
+*/
+            //
+            glVertex3f(
+                radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
+                radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
+                radius * cosf((i + 1) * (M_PI / subdivisionsHeight))
+            );
+
+            glNormal3f(
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
+                cosf((i + 1) * (M_PI / subdivisionsHeight))
+            );
+/*
+            tangents->push_back(glm::vec3(
+                sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * cosf(j * 2 * M_PI / subdivisionsAxis)),
+                sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * sinf(j * 2 * M_PI / subdivisionsAxis)),
+                cosf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight))
+            ));
+
+            bitangents->push_back(glm::vec3(
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf((j + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                cosf((i + 1) * (M_PI / subdivisionsHeight))
+            ));
+
+            texCoords->push_back(glm::vec2(
+                (float)(j * 2 * M_PI * radius / subdivisionsAxis),
+                (float)(i + 1) / subdivisionsHeight
+            ));
+*/
+            glVertex3f(
+                radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                radius * sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                radius * cosf((i + 1) * (M_PI / subdivisionsHeight))
+            );
+
+            glNormal3f(
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                cosf((i + 1) * (M_PI / subdivisionsHeight))
+            );
+/*
+            tangents->push_back(glm::vec3(
+                sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis)),
+                sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis)),
+                cosf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight))
+            ));
+
+            bitangents->push_back(glm::vec3(
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(((j + 1) + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(((j + 1) + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                cosf((i + 1) * (M_PI / subdivisionsHeight))
+            ));
+
+            texCoords->push_back(glm::vec2(
+                (float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis),
+                (float)(i + 1) / subdivisionsHeight
+            ));
+*/
+            glVertex3f(
+                radius * sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                radius * sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                radius * cosf(i * (M_PI / subdivisionsHeight))
+            );
+
+            glNormal3f(
+                sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                cosf(i * (M_PI / subdivisionsHeight))
+            );
+/*
+            tangents->push_back(glm::vec3(
+                sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis)),
+                sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis)),
+                cosf((i + 0.5f) * (M_PI / subdivisionsHeight))
+            ));
+
+            bitangents->push_back(glm::vec3(
+                sinf(i * (M_PI / subdivisionsHeight)) * cosf(((j + 1) + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                sinf(i * (M_PI / subdivisionsHeight)) * sinf(((j + 1) + 0.25f) * 2 * M_PI / subdivisionsAxis),
+                cosf(i * (M_PI / subdivisionsHeight))
+            ));
+
+            texCoords->push_back(glm::vec2(
+                (float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis),
+                (float)i / subdivisionsHeight
+            ));
+*/
+         }
+    }
+    glEnd();
 }
 void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
 
+    //frontFace
+
+    glBegin(GL_TRIANGLES);
+        glVertex3f(-0.5, -0.5, -0.5);
+        glNormal3f(0,0,-1.0);
+        glVertex3f(-0.5, 0.5, -0.5);
+        glNormal3f(0,0,-1.0);
+        glVertex3f(0.5, 0.5, -0.5);
+        glNormal3f(0,0,-1.0);
+
+        glVertex3f(0.5, 0.5, -0.5);
+        glNormal3f(0,0,-1.0);
+        glVertex3f(0.5, -0.5, -0.5);
+        glNormal3f(0,0,-1.0);
+        glVertex3f(-0.5, -0.5, -0.5);
+        glNormal3f(0,0,-1.0);
+    //glEnd();
+    //backFace
+    //glBegin(GL_QUADS);
+       /*
+        glNormal3f(0,0,1.0f);
+        glVertex3f(-0.5f, -0.5f, -1.5f);
+        glNormal3f(0,0,1.0f);
+        glVertex3f(-0.5f, 0.5f, -1.5f);
+        glNormal3f(0,0,1.0f);
+        glVertex3f(0.5f, 0.5f, -1.5f);
+        glNormal3f(0,0,1.0f);
+        glVertex3f(0.5f, -0.5f, -1.5f);
+    //glEnd();
+    //leftFace
+    //glBegin(GL_QUADS);
+        glNormal3f(-1.0f,0,0);
+        glVertex3f(-0.5f, -0.5f, -1.5f);
+        glNormal3f(-1.0f,0,0);
+        glVertex3f(-0.5f, 0.5f, -1.5f);
+        glNormal3f(-1.0f,0,0);
+        glVertex3f(-0.5f, 0.5f, -0.5f);
+        glNormal3f(-1.0f,0,0);
+        glVertex3f(-0.5f, -0.5f, -0.5f);
+    //glEnd();
+    //rightFace
+    //glBegin(GL_QUADS);
+        glNormal3f(1.0f,0,0);
+        glVertex3f(0.5f, -0.5f, -1.5f);
+        glNormal3f(1.0f,0,0);
+        glVertex3f(0.5f, 0.5f, -1.5f);
+        glNormal3f(1.0f,0,0);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+        glNormal3f(1.0f,0,0);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+    //glEnd();
+    //topFace
+    //glBegin(GL_QUADS);
+        glNormal3f(0.0f,1.0f,0);
+        glVertex3f(0.5f, 0.5f, -1.5f);
+        glNormal3f(0.0f,1.0f,0);
+        glVertex3f(-0.5f, 0.5f, -1.5f);
+        glNormal3f(0.0f,1.0f,0);
+        glVertex3f(-0.5f, 0.5f, -0.5f);
+        glNormal3f(0.0f,1.0f,0);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+    //glEnd();
+    //bottomFace
+    //glBegin(GL_QUADS);
+        glNormal3f(0.0f, -1.0f,0);
+        glVertex3f(0.5f, -0.5f, -1.5f);
+        glNormal3f(0.0f, -1.0f,0);
+        glVertex3f(-0.5f, -0.5f, -1.5f);
+        glNormal3f(0.0f, -1.0f,0);
+        glVertex3f(-0.5f, -0.5f, -0.5f);
+        glNormal3f(0.0f, -1.0f,0);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+    glEnd();
+
+
+    /*
+    glBegin(GL_TRIANGLES);
+        glNormal3f(0,0,1);
+        glVertex3f(-1,-1,0);
+        glVertex3f(-1,1,0);
+        glVertex3f(1,1,0);
+        //glVertex3f(1,-1,0);
+    */
+    glEnd();
+    //drawSphere(x, y, z, rotX, rotY, rotZ, sX, SY, sZ, r, g, b, texture);
 }
 void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
 
