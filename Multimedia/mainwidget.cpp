@@ -756,7 +756,7 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
     int subdivisionsAxis = 20;
     float height = 1.0f;
     glPushMatrix();
-    glColor3f(r/255, g/255, b/255);
+    glColor3f((float)r/255, (float)g/255,(float) b/255);
     glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
@@ -769,11 +769,11 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
             {
                 //Side
 
-                glVertex3f(radius * cosf(j * (2 * M_PI / subdivisionsAxis)), height * ((-0.5f + i) / subdivisionsHeight), radius * sinf(j * (2 * M_PI / subdivisionsAxis)));
+                glVertex3f(radius * cosf(j * (2 * M_PI / subdivisionsAxis)), height * ((float)(i) / subdivisionsHeight), radius * sinf(j * (2 * M_PI / subdivisionsAxis)));
                 glNormal3f(cosf(j * (2 * M_PI / subdivisionsAxis)), 0.0f, sinf(j * (2 * M_PI / subdivisionsAxis)));
-                glVertex3f(radius * cosf(j * (2 * M_PI / subdivisionsAxis)), height * ((-0.5f + i + 1) / subdivisionsHeight), radius * sinf(j * (2 * M_PI / subdivisionsAxis)));
+                glVertex3f(radius * cosf(j * (2 * M_PI / subdivisionsAxis)), height * ((float)(i + 1) / subdivisionsHeight), radius * sinf(j * (2 * M_PI / subdivisionsAxis)));
                 glNormal3f(cosf(j * (2 * M_PI / subdivisionsAxis)), 0.0f, sinf(j * (2 * M_PI / subdivisionsAxis)));
-                glVertex3f(radius * cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), height * ((-0.5f + i) / subdivisionsHeight), radius * sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
+                glVertex3f(radius * cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), height * ((float)(i) / subdivisionsHeight), radius * sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
                 glNormal3f(cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), 0.0f, sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
 /*
                 tangents->push_back(0.0f);tangents->push_back(1.0f);tangents->push_back(0.0f);
@@ -788,12 +788,11 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
                 texCoords->push_back((float)(j * 2 * M_PI * radius / subdivisionsAxis));texCoords->push_back(((float)(i + 1) / subdivisionsHeight));
                 texCoords->push_back((float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis));texCoords->push_back(((float)i / subdivisionsHeight));
 */
-                glVertex3f(radius * cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), ((-0.5f + i + 1) / subdivisionsHeight), radius * sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
-                glVertex3f(radius * cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), height * ((-0.5f + i) / subdivisionsHeight), radius * sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
-                glVertex3f(radius * cosf(j * (2 * M_PI / subdivisionsAxis)), height * ((-0.5f + i + 1) / subdivisionsHeight), radius * sinf(j * (2 * M_PI / subdivisionsAxis)));
-
+                glVertex3f(radius * cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), height *((float)(i + 1) / subdivisionsHeight), radius * sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
                 glNormal3f(cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), 0.0f, sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
+                glVertex3f(radius * cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), height * ((float)(i) / subdivisionsHeight), radius * sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
                 glNormal3f(cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), 0.0f, sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
+                glVertex3f(radius * cosf(j * (2 * M_PI / subdivisionsAxis)), height * ((float)(i + 1) / subdivisionsHeight), radius * sinf(j * (2 * M_PI / subdivisionsAxis)));
                 glNormal3f(cosf(j * (2 * M_PI / subdivisionsAxis)), 0.0f, sinf(j * (2 * M_PI / subdivisionsAxis)));
 /*
                 tangents->push_back(0.0f);tangents->push_back(1.0f);tangents->push_back(0.0f);
@@ -810,11 +809,10 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
 */
                 //Top
                 glVertex3f(radius * cosf(j * (2 * M_PI / subdivisionsAxis)), height * 0.5f, radius * sinf(j * (2 * M_PI / subdivisionsAxis)));
+                glNormal3f(0.0f, 1.0f, 0.0f);
                 glVertex3f(0.0f, height * 0.5f, 0.0f);
+                glNormal3f(0.0f, 1.0f, 0.0f);
                 glVertex3f(radius * cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), height * 0.5f, radius * sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
-
-                glNormal3f(0.0f, 1.0f, 0.0f);
-                glNormal3f(0.0f, 1.0f, 0.0f);
                 glNormal3f(0.0f, 1.0f, 0.0f);
 /*
                 tangents->push_back(1.0f);tangents->push_back(0.0f);tangents->push_back(0.0f);
@@ -831,11 +829,10 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
 */
                 //Bottom
                 glVertex3f(radius * cosf(j * (2 * M_PI / subdivisionsAxis)), height * (-0.5f), radius * sinf(j * (2 * M_PI / subdivisionsAxis)));
+                glNormal3f(0.0f, -1.0f, 0.0f);
                 glVertex3f(radius * cosf((j + 1) * (2 * M_PI / subdivisionsAxis)), height * (-0.5f), radius * sinf((j + 1) * (2 * M_PI / subdivisionsAxis)));
+                glNormal3f(0.0f, -1.0f, 0.0f);
                 glVertex3f(0.0f, height * (-0.5f), 0.0f);
-
-                glNormal3f(0.0f, -1.0f, 0.0f);
-                glNormal3f(0.0f, -1.0f, 0.0f);
                 glNormal3f(0.0f, -1.0f, 0.0f);
 /*
                 tangents->push_back(-1.0f);tangents->push_back(0.0f);tangents->push_back(0.0f);
