@@ -856,7 +856,45 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
     glPopMatrix();
 }
 void MainWidget::drawSurface(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+    if(texture != "") {
+        qDebug() << texture;
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, bindTexture
+                      (QPixmap(textures[texture]), GL_TEXTURE_2D));
+    } else {
+         glDisable(GL_TEXTURE_2D);
     }
+    glPushMatrix();
+    glColor3f((float) r/255,  (float)g/255,  (float)b/255);
+    glTranslatef(x,y,z);
+    glRotatef(rotX, 1, 0, 0);
+    glRotatef(rotY, 0, 1, 0);
+    glRotatef(rotZ, 0, 0, 1);
+    glScalef(sX, SY,sZ);
+    glBegin(GL_QUADS);
+        glNormal3f(0,0,-1);
+        glTexCoord2f(-1,-1);
+        glVertex3f(-1,-1,0);
+        glTexCoord2f(-1,1);
+        glVertex3f(-1,1,0);
+        glTexCoord2f(1,1);
+        glVertex3f(1,1,0);
+        glTexCoord2f(1,-1);
+        glVertex3f(1,-1,0);
+    glEnd();
+    glBegin(GL_QUADS);
+        glNormal3f(0,0,1);
+        glTexCoord2f(1,-1);
+        glVertex3f(1,-1,0);
+        glTexCoord2f(1,1);
+        glVertex3f(1,1,0);
+        glTexCoord2f(-1,1);
+        glVertex3f(-1,1,0);
+        glTexCoord2f(-1,-1);
+        glVertex3f(-1,-1,0);
+    glEnd();
+    glPopMatrix();
+}
 void MainWidget::drawPyramid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
     if(texture != "") {
         qDebug() << texture;
