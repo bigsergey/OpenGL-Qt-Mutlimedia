@@ -30,7 +30,7 @@ void MainWidget::initializeGL()
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
 
-    static GLfloat lightPosition[4] = { 0, 0, 10, 0.5 };
+    static GLfloat lightPosition[4] = { 90, 90, 90, 1 };
     float ambient[4] = {0.5, 0.5, 0.5, 1};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);

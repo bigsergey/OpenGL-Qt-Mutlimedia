@@ -47,8 +47,8 @@ private slots:
     void setB(int);
     void setModel(QString);
     void setTexture(QString);
-    void keyReleaseEvent(QKeyEvent *event);
-    void keyPressEvent(QKeyEvent *event);
+//    void keyReleaseEvent(QKeyEvent *event);
+//    void keyPressEvent(QKeyEvent *event);
 
 
 private:
@@ -60,7 +60,7 @@ private:
     int MOVE;
 
 protected:
-    void timerEvent(QTimerEvent *event);
+//    void timerEvent(QTimerEvent *event);
 
 };
 

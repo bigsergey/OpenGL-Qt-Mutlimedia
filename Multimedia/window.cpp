@@ -15,8 +15,8 @@ Window::Window(QWidget *parent) :
     ui->modelComboBox->addItem((QString) "pyramid");
     ui->modelComboBox->addItem((QString) "sphere");
 
-    timerId = startTimer(300);
-    MOVE = 10;
+   // timerId = startTimer(300);
+    MOVE = 1;
     moveX = 0;
     moveY = 0;
     moveZ = 0;
@@ -51,6 +51,8 @@ Window::Window(QWidget *parent) :
         model->setStringList(List);
 
         ui->listView->setModel(model);
+        activeObject = sceneObjects.at(0);
+        ui->listView->setCurrentIndex(ui->listView->indexAt(QPoint(0,0)));
         ui->listView->
                 setEditTriggers(QAbstractItemView::AnyKeyPressed |
                                 QAbstractItemView::DoubleClicked);
@@ -124,7 +126,7 @@ void Window::onAddButtonClicked(){
 
 Window::~Window()
 {
-    killTimer(timerId);
+    //killTimer(timerId);
     delete ui;
 }
 
@@ -166,17 +168,17 @@ void Window::on_addTextureButton_clicked()
 
 void Window::setX(int x) {
     this->activeObject->x = x;
-//    ui->widget->updateGL();
+    ui->widget->updateGL();
 }
 
 void Window::setY(int y) {
     this->activeObject->y = y;
-//    ui->widget->updateGL();
+    ui->widget->updateGL();
 }
 
 void Window::setZ(int z) {
     this->activeObject->z = z;
-//    ui->widget->updateGL();
+    ui->widget->updateGL();
 }
 
 void Window::addX(int x) {
@@ -192,123 +194,134 @@ void Window::addY(int y) {
 void Window::addZ(int z) {
     this->activeObject->z = this->activeObject->z + z;
     ui->zPosSpinBox->setValue(ui->zPosSpinBox->value() + z);
-
 }
 
 void Window::setRotX(int rotX) {
     this->activeObject->rotX = rotX;
+    ui->widget->updateGL();
 }
 
 void Window::setRotY(int rotY) {
     this->activeObject->rotY = rotY;
+    ui->widget->updateGL();
 }
 
 void Window::setRotZ(int rotZ) {
     this->activeObject->rotZ = rotZ;
+    ui->widget->updateGL();
 }
 
 void Window::setSX(int sX) {
     this->activeObject->sX = sX;
+    ui->widget->updateGL();
 }
 
 void Window::setSY(int sY) {
     this->activeObject->sY= sY;
+    ui->widget->updateGL();
 }
 
 void Window::setSZ(int sZ) {
     this->activeObject->sZ = sZ;
+    ui->widget->updateGL();
 }
 
 void Window::setR(int r) {
     this->activeObject->r = r;
+    ui->widget->updateGL();
 }
 
 void Window::setG(int g) {
     this->activeObject->g = g;
+    ui->widget->updateGL();
 }
 
 void Window::setB(int b) {
     this->activeObject->b = b;
+    ui->widget->updateGL();
 }
 
 void Window::setModel(QString model) {
     this->activeObject->model = model;
+    ui->widget->updateGL();
 }
 
 void Window::setTexture(QString texture) {
     this->activeObject->texture = texture;
-}
-
-void Window::timerEvent(QTimerEvent *event)
-{
-    if(moveX != 0)
-    {
-        qDebug() << "MoveX" << moveX;
-        addX(moveX);
-    }
-    if(moveY != 0)
-    {
-        qDebug() << "MoveY" << moveY;
-        addY(moveY);
-    }
-    if(moveZ != 0)
-    {
-        qDebug() << "MoveZ" << moveZ;
-        addZ(moveZ);
-    }
-
-    // tutaj w kółko ustawiam focus na widget, bo gubił nie wiem dlaczego. Wiem, że to raczej nie dobre rozwiazanie
-    ui->widget->setFocus();
     ui->widget->updateGL();
 }
 
-void Window::keyPressEvent(QKeyEvent *event) {
+//void Window::timerEvent(QTimerEvent *event)
+//{
+//    if(moveX != 0)
+//    {
+//        qDebug() << "MoveX" << moveX;
+//        addX(moveX);
+//    }
+//    if(moveY != 0)
+//    {
+//        qDebug() << "MoveY" << moveY;
+//        addY(moveY);
+//    }
+//    if(moveZ != 0)
+//    {
+//        qDebug() << "MoveZ" << moveZ;
+//        addZ(moveZ);
+//    }
 
-    switch (event->key()) {
-    case Qt::Key_Escape:
-        close();
-        break;
-    case Qt::Key_R:
-        moveZ = MOVE;
-        break;
-    case Qt::Key_F:
-        moveZ = -MOVE;
-        break;
-    case Qt::Key_A:
-        moveX = -MOVE;
-        break;
-    case Qt::Key_D:
-        moveX = MOVE;
-        break;
-    case Qt::Key_W:
-        moveY = MOVE;
-        break;
-    case Qt::Key_S:
-        moveY = -MOVE;
-        break;
-    }
-}
+//    // tutaj w kółko ustawiam focus na widget, bo gubił nie wiem dlaczego. Wiem, że to raczej nie dobre rozwiazanie
+//    ui->widget->setFocus();
+//    ui->widget->updateGL();
+//}
 
-void Window::keyReleaseEvent(QKeyEvent *event) {
+//void Window::keyPressEvent(QKeyEvent *event) {
 
-    switch (event->key()) {
-    case Qt::Key_R:
-        moveZ = 0;
-        break;
-    case Qt::Key_F:
-        moveZ = 0;
-        break;
-    case Qt::Key_A:
-        moveX = 0;
-        break;
-    case Qt::Key_D:
-        moveX = 0;
-        break;
-    case Qt::Key_W:
-        moveY = 0;
-        break;
-    case Qt::Key_S:
-        moveY = 0;
-        break;
-    }
-}
+//    switch (event->key()) {
+//    case Qt::Key_Escape:
+//        close();
+//        break;
+//    case Qt::Key_R:
+//        moveZ = MOVE;
+//        break;
+//    case Qt::Key_F:
+//        moveZ = -MOVE;
+//        break;
+//    case Qt::Key_A:
+//        moveX = -MOVE;
+//        break;
+//    case Qt::Key_D:
+//        moveX = MOVE;
+//        break;
+//    case Qt::Key_W:
+//        moveY = MOVE;
+//        break;
+//    case Qt::Key_S:
+//        moveY = -MOVE;
+//        break;
+//    }
+//    ui->widget->updateGL();
+//}
+
+//void Window::keyReleaseEvent(QKeyEvent *event) {
+
+//    switch (event->key()) {
+//    case Qt::Key_R:
+//        moveZ = 0;
+//        break;
+//    case Qt::Key_F:
+//        moveZ = 0;
+//        break;
+//    case Qt::Key_A:
+//        moveX = 0;
+//        break;
+//    case Qt::Key_D:
+//        moveX = 0;
+//        break;
+//    case Qt::Key_W:
+//        moveY = 0;
+//        break;
+//    case Qt::Key_S:
+//        moveY = 0;
+//        break;
+//    }
+//}
