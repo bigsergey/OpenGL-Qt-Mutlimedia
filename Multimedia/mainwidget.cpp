@@ -60,9 +60,6 @@ void MainWidget::paintGL()
 void MainWidget::resizeGL(int width, int height)
 {
     int side = qMin(width, height);
-    qDebug() << (width - side) / 2;
-    qDebug() << (height - side) / 2;
-    qDebug() << side;
 
     glViewport(0, 0, 600, 600);
 
@@ -175,6 +172,7 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
     int subdivisionsHeight = 40;
     int subdivisionsAxis = 40;
     glPushMatrix();
+    glColor3f((float) r/255,  (float)g/255,  (float)g/255);
     glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
@@ -369,91 +367,6 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
 }
 void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int sY, int sZ, int r, int g, int b, QString texture){
 
-    //frontFace
-/*
-    glBegin(GL_TRIANGLES);
-        glVertex3f(-0.5, -0.5, -0.5);
-        glNormal3f(0,0,-1.0);
-        glVertex3f(-0.5, 0.5, -0.5);
-        glNormal3f(0,0,-1.0);
-        glVertex3f(0.5, 0.5, -0.5);
-        glNormal3f(0,0,-1.0);
-
-        glVertex3f(0.5, 0.5, -0.5);
-        glNormal3f(0,0,-1.0);
-        glVertex3f(0.5, -0.5, -0.5);
-        glNormal3f(0,0,-1.0);
-        glVertex3f(-0.5, -0.5, -0.5);
-        glNormal3f(0,0,-1.0);
-    //glEnd();
-    //backFace
-    //glBegin(GL_QUADS);
-       /*
-        glNormal3f(0,0,1.0f);
-        glVertex3f(-0.5f, -0.5f, -1.5f);
-        glNormal3f(0,0,1.0f);
-        glVertex3f(-0.5f, 0.5f, -1.5f);
-        glNormal3f(0,0,1.0f);
-        glVertex3f(0.5f, 0.5f, -1.5f);
-        glNormal3f(0,0,1.0f);
-        glVertex3f(0.5f, -0.5f, -1.5f);
-    //glEnd();
-    //leftFace
-    //glBegin(GL_QUADS);
-        glNormal3f(-1.0f,0,0);
-        glVertex3f(-0.5f, -0.5f, -1.5f);
-        glNormal3f(-1.0f,0,0);
-        glVertex3f(-0.5f, 0.5f, -1.5f);
-        glNormal3f(-1.0f,0,0);
-        glVertex3f(-0.5f, 0.5f, -0.5f);
-        glNormal3f(-1.0f,0,0);
-        glVertex3f(-0.5f, -0.5f, -0.5f);
-    //glEnd();
-    //rightFace
-    //glBegin(GL_QUADS);
-        glNormal3f(1.0f,0,0);
-        glVertex3f(0.5f, -0.5f, -1.5f);
-        glNormal3f(1.0f,0,0);
-        glVertex3f(0.5f, 0.5f, -1.5f);
-        glNormal3f(1.0f,0,0);
-        glVertex3f(0.5f, 0.5f, -0.5f);
-        glNormal3f(1.0f,0,0);
-        glVertex3f(0.5f, -0.5f, -0.5f);
-    //glEnd();
-    //topFace
-    //glBegin(GL_QUADS);
-        glNormal3f(0.0f,1.0f,0);
-        glVertex3f(0.5f, 0.5f, -1.5f);
-        glNormal3f(0.0f,1.0f,0);
-        glVertex3f(-0.5f, 0.5f, -1.5f);
-        glNormal3f(0.0f,1.0f,0);
-        glVertex3f(-0.5f, 0.5f, -0.5f);
-        glNormal3f(0.0f,1.0f,0);
-        glVertex3f(0.5f, 0.5f, -0.5f);
-    //glEnd();
-    //bottomFace
-    //glBegin(GL_QUADS);
-        glNormal3f(0.0f, -1.0f,0);
-        glVertex3f(0.5f, -0.5f, -1.5f);
-        glNormal3f(0.0f, -1.0f,0);
-        glVertex3f(-0.5f, -0.5f, -1.5f);
-        glNormal3f(0.0f, -1.0f,0);
-        glVertex3f(-0.5f, -0.5f, -0.5f);
-        glNormal3f(0.0f, -1.0f,0);
-        glVertex3f(0.5f, -0.5f, -0.5f);
-    glEnd();
-
-
-    /*
-    glBegin(GL_TRIANGLES);
-        glNormal3f(0,0,1);
-        glVertex3f(-1,-1,0);
-        glVertex3f(-1,1,0);
-        glVertex3f(1,1,0);
-        //glVertex3f(1,-1,0);
-    */
-    //glEnd();
-
     //drawSphere(x, y, z, rotX, rotY, rotZ, sX, SY, sZ, r, g, b, texture);
 
     int subdivisionsX = 2;
@@ -463,6 +376,7 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
     float sizeY = sY;//1.0f;
     float sizeZ = sZ;//1.0f;
     glPushMatrix();
+    glColor3f((float) r/255,  (float)g/255,  (float)g/255);
     glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
@@ -874,6 +788,7 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
     int subdivisionsAxis = 20;
     float height = 1.0f;
     glPushMatrix();
+    glColor3f(r/255, g/255, b/255);
     glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
@@ -973,7 +888,7 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
     glPopMatrix();
 }
 void MainWidget::drawSurface(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
-}
+    }
 void MainWidget::drawPyramid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
 
 }
@@ -982,9 +897,8 @@ void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, in
 }
 
 void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
-
     glPushMatrix();
-    qglColor(Qt::red);
+    glColor3f((float) r/255,  (float)g/255,  (float)g/255);
     glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);

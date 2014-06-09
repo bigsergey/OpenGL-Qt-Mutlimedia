@@ -115,9 +115,9 @@ void Window::onAddButtonClicked(){
         sceneObject->sX=1;
         sceneObject->sY=1;
         sceneObject->sZ=1;
-        sceneObject->r=0;
-        sceneObject->g=0;
-        sceneObject->b=0;
+        sceneObject->r=125;
+        sceneObject->g=125;
+        sceneObject->b=125;
         sceneObjects.append(sceneObject);
         ui->listView->edit(index);
 }
