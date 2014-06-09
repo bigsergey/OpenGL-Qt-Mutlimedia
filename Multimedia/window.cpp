@@ -79,6 +79,8 @@ Window::Window(QWidget *parent) :
         ui->textureComboBox->hide();
         ui->modelLabel->hide();
         ui->textureLabel->hide();
+        ui->rotationGroupBox->hide();
+        ui->scaleGroupBox->hide();
 }
 
 
@@ -88,17 +90,20 @@ void Window::onListViewItemClicked( const QItemSelection & selection)
 
     //ui->widget->updateGL();
     activeObject = sceneObjects.at(selection.indexes().at(0).row());
-    qDebug() << "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" <<activeObject->model;
     if(activeObject->model == "light") {
         ui->modelComboBox->hide();
         ui->textureComboBox->hide();
         ui->modelLabel->hide();
         ui->textureLabel->hide();
+        ui->rotationGroupBox->hide();
+        ui->scaleGroupBox->hide();
     } else {
         ui->modelComboBox->show();
         ui->textureComboBox->show();
         ui->modelLabel->show();
         ui->textureLabel->show();
+        ui->rotationGroupBox->show();
+        ui->scaleGroupBox->show();
     }
     ui->xPosSpinBox->setValue(activeObject->x);
     ui->yPosSpinBox->setValue(activeObject->y);
