@@ -112,9 +112,9 @@ void Window::onAddButtonClicked(){
         sceneObject->rotX=0;
         sceneObject->rotY=0;
         sceneObject->rotZ=0;
-        sceneObject->sX=0;
-        sceneObject->sY=0;
-        sceneObject->sZ=0;
+        sceneObject->sX=1;
+        sceneObject->sY=1;
+        sceneObject->sZ=1;
         sceneObject->r=0;
         sceneObject->g=0;
         sceneObject->b=0;
