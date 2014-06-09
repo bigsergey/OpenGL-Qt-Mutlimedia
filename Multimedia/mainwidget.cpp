@@ -11,8 +11,7 @@ MainWidget::MainWidget(QWidget *parent) :
 void MainWidget::addTexture(QString path) {
     QStringList pieces = path.split( "/" );
     QString neededWord = pieces.value( pieces.length() - 1 );
-    textures[neededWord] = bindTexture
-        (QPixmap(QString(path)), GL_TEXTURE_2D);
+    textures[neededWord] = QString(path);
 }
 void MainWidget::setSceneObjects(QList<SceneObject*> *sceneObjects){
     this->sceneObjects=sceneObjects;
@@ -30,8 +29,10 @@ void MainWidget::initializeGL()
     glEnable(GL_CULL_FACE);
     glShadeModel(GL_SMOOTH);
 
+
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
+
 
     static GLfloat lightPosition[4] = { 20, 20, 90, 1 };
     float ambient[4] = {0.5, 0.5, 0.5, 1};
@@ -41,14 +42,10 @@ void MainWidget::initializeGL()
 
     //initialize textures
     for(int j=0; j<6; ++j) {
-        textures[QString("side%1.png").arg(j + 1)]=bindTexture
-                (QPixmap(QString(":/images/side%1.png").arg(j + 1)), GL_TEXTURE_2D);
+        textures[QString("side%1.png").arg(j + 1)]=QString(":/images/side%1.png").arg(j + 1);
     }
-    textures["wall.jpg"]=bindTexture
-            (QPixmap(QString(":/images/wall.jpg")), GL_TEXTURE_2D);
-    textures["blue.png"]=bindTexture
-            (QPixmap(QString(":/images/blue.png")), GL_TEXTURE_2D);
-
+    textures["blue.png"]=QString(":/images/blue.png");
+    textures["wall.png"]=QString(":/images/wall.png");
 
 }
 
@@ -901,6 +898,15 @@ void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, in
 }
 
 void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+    qDebug() << texture;
+    if(texture != "") {
+        qDebug() << texture;
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, bindTexture
+                      (QPixmap(textures[texture]), GL_TEXTURE_2D));
+    } else {
+         glDisable(GL_TEXTURE_2D);
+    }
     glPushMatrix();
     glColor3f((float) r/255,  (float)g/255,  (float)b/255);
     glTranslatef(x,y,z);
@@ -910,33 +916,49 @@ void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int
     glScalef(sX, SY,sZ);
     glBegin(GL_QUADS);
         glNormal3f(0,0,-1);
+        glTexCoord2f(-1,-1);
         glVertex3f(-1,-1,0);
+        glTexCoord2f(-1,1);
         glVertex3f(-1,1,0);
+        glTexCoord2f(1,1);
         glVertex3f(1,1,0);
+        glTexCoord2f(1,-1);
         glVertex3f(1,-1,0);
     glEnd();
     glBegin(GL_TRIANGLES);
         glNormal3f(0,-1,0.707);
+        glTexCoord2f(-1,-1);
         glVertex3f(-1,-1,0);
+        glTexCoord2f(1,-1);
         glVertex3f(1,-1,0);
+        glTexCoord2f(-1,1);
         glVertex3f(0,0,1.2);
     glEnd();
     glBegin(GL_TRIANGLES);
         glNormal3f(1,0, 0.707);
+        glTexCoord2f(1,-1);
         glVertex3f(1,-1,0);
+        glTexCoord2f(1,1);
         glVertex3f(1,1,0);
+        glTexCoord2f(-1,1);
         glVertex3f(0,0,1.2);
     glEnd();
     glBegin(GL_TRIANGLES);
         glNormal3f(0,1,0.707);
+        glTexCoord2f(1,1);
         glVertex3f(1,1,0);
+        glTexCoord2f(-1,1);
         glVertex3f(-1,1,0);
+        glTexCoord2f(1,-1);
         glVertex3f(0,0,1.2);
     glEnd();
     glBegin(GL_TRIANGLES);
         glNormal3f(-1,0,0.707);
+        glTexCoord2f(-1,1);
         glVertex3f(-1,1,0);
+        glTexCoord2f(-1,-1);
         glVertex3f(-1,-1,0);
+        glTexCoord2f(1,1);
         glVertex3f(0,0,1.2);
     glEnd();
     glPopMatrix();

@@ -23,7 +23,7 @@ Window::Window(QWidget *parent) :
 
     //init combobox with textures
     QStringList textures;
-    textures << "side1.png" << "side2.png" << "side3.png" << "side4.png" << "side5.png" << "side6.png" << "wall.jpeg" << "blue.png";
+    textures << "side1.png" << "side2.png" << "side3.png" << "side4.png" << "side5.png" << "side6.png" << "wall.png" << "blue.png";
     ui->textureComboBox->addItems(textures);
 
     // Create model

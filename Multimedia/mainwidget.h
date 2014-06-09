@@ -20,7 +20,7 @@ protected:
     void initializeGL();
     void paintGL();
     void resizeGL(int width, int height);
-    QMap <QString, GLuint> textures;
+    QMap <QString, QString> textures;
 
 private:
     QList<SceneObject*> * sceneObjects;
