@@ -21,7 +21,7 @@ void MainWidget::setSceneObjects(QList<SceneObject*> *sceneObjects){
 void MainWidget::initializeGL()
 {
     qDebug() << "initGL";
-    glClearColor( 1.0, 1.0, 1.0, 1.0 );
+    glClearColor( 0.5, 0.5, 0.5, 1.0 );
 
         // czyszczenie bufora koloru i bufora głębokości
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -380,7 +380,7 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
     float sizeY = sY;//1.0f;
     float sizeZ = sZ;//1.0f;
     glPushMatrix();
-    glColor3f((float) r/255,  (float)g/255,  (float)g/255);
+    glColor3f((float) r/255,  (float)g/255,  (float)b/255);
     glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
@@ -902,7 +902,7 @@ void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, in
 
 void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
     glPushMatrix();
-    glColor3f((float) r/255,  (float)g/255,  (float)g/255);
+    glColor3f((float) r/255,  (float)g/255,  (float)b/255);
     glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
