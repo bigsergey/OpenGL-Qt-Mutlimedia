@@ -20,7 +20,7 @@ void MainWidget::setSceneObjects(QList<SceneObject*> *sceneObjects){
 void MainWidget::initializeGL()
 {
     qDebug() << "initGL";
-    glClearColor( 0.5, 0.5, 0.5, 1.0 );
+    glClearColor( 0.74902, 0.847059, 0.847059, 1.0 );
 
         // czyszczenie bufora koloru i bufora głębokości
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
