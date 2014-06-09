@@ -168,6 +168,12 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
     float radius = 1.0f;
     int subdivisionsHeight = 40;
     int subdivisionsAxis = 40;
+    glPushMatrix();
+    glRotatef(rotX, 1, 0, 0);
+    glRotatef(rotY, 0, 1, 0);
+    glRotatef(rotZ, 0, 0, 1);
+    glScalef(sX, SY,sZ);
+    glTranslatef(x,y,z);
     glBegin(GL_TRIANGLES);
     for(int i = 0; i < subdivisionsHeight; i++)
     {
@@ -353,6 +359,7 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
          }
     }
     glEnd();
+    glPopMatrix();
 }
 void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int sY, int sZ, int r, int g, int b, QString texture){
 
@@ -449,7 +456,12 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
     float sizeX = sX;//1.0f;
     float sizeY = sY;//1.0f;
     float sizeZ = sZ;//1.0f;
-
+    glPushMatrix();
+    glRotatef(rotX, 1, 0, 0);
+    glRotatef(rotY, 0, 1, 0);
+    glRotatef(rotZ, 0, 0, 1);
+    glScalef(sX, sY,sZ);
+    glTranslatef(x,y,z);
     glBegin(GL_TRIANGLES);
     for(int j = -1; j < subdivisionsZ - 1; j++)	//Top Face
         {
@@ -847,6 +859,7 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
             }
         }
         glEnd();
+        glPopMatrix();
 }
 void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
 
@@ -854,6 +867,12 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
     float radius = 1.0f;
     int subdivisionsAxis = 20;
     float height = 1.0f;
+    glPushMatrix();
+    glRotatef(rotX, 1, 0, 0);
+    glRotatef(rotY, 0, 1, 0);
+    glRotatef(rotZ, 0, 0, 1);
+    glScalef(sX, SY,sZ);
+    glTranslatef(x,y,z);
     glBegin(GL_TRIANGLES);
     for(int i = -1; i < subdivisionsHeight - 1; i++)	//Tangents bitangents fix for sides
         {
@@ -945,6 +964,7 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
             }
         }
     glEnd();
+    glPopMatrix();
 }
 void MainWidget::drawSurface(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
 
@@ -958,6 +978,12 @@ void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, in
 
 void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
     //qglColor(Qt::red);
+    glPushMatrix();
+    glRotatef(rotX, 1, 0, 0);
+    glRotatef(rotY, 0, 1, 0);
+    glRotatef(rotZ, 0, 0, 1);
+    glScalef(sX, SY,sZ);
+    glTranslatef(x,y,z);
     glBegin(GL_QUADS);
         glNormal3f(0,0,-1);
         glVertex3f(-1,-1,0);
@@ -990,4 +1016,5 @@ void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int
         glVertex3f(-1,-1,0);
         glVertex3f(0,0,1.2);
     glEnd();
+    glPopMatrix();
 }
