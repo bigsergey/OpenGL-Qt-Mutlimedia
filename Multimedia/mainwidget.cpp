@@ -31,6 +31,8 @@ void MainWidget::initializeGL()
     glEnable(GL_LIGHT0);
 
     static GLfloat lightPosition[4] = { 0, 0, 10, 0.5 };
+    float ambient[4] = {0.5, 0.5, 0.5, 1};
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient);
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 
     //initialize textures
@@ -58,14 +60,18 @@ void MainWidget::paintGL()
 void MainWidget::resizeGL(int width, int height)
 {
     int side = qMin(width, height);
-    glViewport((width - side) / 2, (height - side) / 2, side, side);
+    qDebug() << (width - side) / 2;
+    qDebug() << (height - side) / 2;
+    qDebug() << side;
+
+    glViewport(0, 0, 600, 600);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 #ifdef QT_OPENGL_ES_1
     glOrthof(-2, +2, -2, +2, 1.0, 15.0);
 #else
-    glOrtho(-2, +2, -2, +2, 1.0, 15.0);
+    glOrtho(-7, +7, -7, +7, 1.0, 50.0);
 #endif
     glMatrixMode(GL_MODELVIEW);
 }
@@ -169,11 +175,11 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
     int subdivisionsHeight = 40;
     int subdivisionsAxis = 40;
     glPushMatrix();
+    glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
     glRotatef(rotZ, 0, 0, 1);
     glScalef(sX, SY,sZ);
-    glTranslatef(x,y,z);
     glBegin(GL_TRIANGLES);
     for(int i = 0; i < subdivisionsHeight; i++)
     {
@@ -457,11 +463,11 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
     float sizeY = sY;//1.0f;
     float sizeZ = sZ;//1.0f;
     glPushMatrix();
+    glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
     glRotatef(rotZ, 0, 0, 1);
     glScalef(sX, sY,sZ);
-    glTranslatef(x,y,z);
     glBegin(GL_TRIANGLES);
     for(int j = -1; j < subdivisionsZ - 1; j++)	//Top Face
         {
@@ -868,11 +874,11 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
     int subdivisionsAxis = 20;
     float height = 1.0f;
     glPushMatrix();
+    glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
     glRotatef(rotZ, 0, 0, 1);
     glScalef(sX, SY,sZ);
-    glTranslatef(x,y,z);
     glBegin(GL_TRIANGLES);
     for(int i = -1; i < subdivisionsHeight - 1; i++)	//Tangents bitangents fix for sides
         {
@@ -967,7 +973,6 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
     glPopMatrix();
 }
 void MainWidget::drawSurface(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
-
 }
 void MainWidget::drawPyramid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
 
@@ -977,20 +982,20 @@ void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, in
 }
 
 void MainWidget::testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
-    //qglColor(Qt::red);
+
     glPushMatrix();
+    qglColor(Qt::red);
+    glTranslatef(x,y,z);
     glRotatef(rotX, 1, 0, 0);
     glRotatef(rotY, 0, 1, 0);
     glRotatef(rotZ, 0, 0, 1);
     glScalef(sX, SY,sZ);
-    glTranslatef(x,y,z);
     glBegin(GL_QUADS);
         glNormal3f(0,0,-1);
         glVertex3f(-1,-1,0);
         glVertex3f(-1,1,0);
         glVertex3f(1,1,0);
         glVertex3f(1,-1,0);
-
     glEnd();
     glBegin(GL_TRIANGLES);
         glNormal3f(0,-1,0.707);
