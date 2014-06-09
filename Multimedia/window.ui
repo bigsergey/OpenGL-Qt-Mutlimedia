@@ -288,7 +288,7 @@
      </widget>
     </item>
     <item row="7" column="0">
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="modelLabel">
       <property name="text">
        <string>Model</string>
       </property>
@@ -298,7 +298,7 @@
      <widget class="QComboBox" name="modelComboBox"/>
     </item>
     <item row="9" column="0">
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="textureLabel">
       <property name="text">
        <string>Texture</string>
       </property>

@@ -75,15 +75,31 @@ Window::Window(QWidget *parent) :
         connect(ui->bSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setB(int)));
         connect(ui->modelComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setModel(QString)));
         connect(ui->textureComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(setTexture(QString)));
-
+        ui->modelComboBox->hide();
+        ui->textureComboBox->hide();
+        ui->modelLabel->hide();
+        ui->textureLabel->hide();
 }
 
 
 void Window::onListViewItemClicked( const QItemSelection & selection)
 {
 
+
     //ui->widget->updateGL();
     activeObject = sceneObjects.at(selection.indexes().at(0).row());
+    qDebug() << "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" <<activeObject->model;
+    if(activeObject->model == "light") {
+        ui->modelComboBox->hide();
+        ui->textureComboBox->hide();
+        ui->modelLabel->hide();
+        ui->textureLabel->hide();
+    } else {
+        ui->modelComboBox->show();
+        ui->textureComboBox->show();
+        ui->modelLabel->show();
+        ui->textureLabel->show();
+    }
     ui->xPosSpinBox->setValue(activeObject->x);
     ui->yPosSpinBox->setValue(activeObject->y);
     ui->zPosSpinBox->setValue(activeObject->z);
@@ -96,8 +112,11 @@ void Window::onListViewItemClicked( const QItemSelection & selection)
     ui->rSpinBox->setValue(activeObject->r);
     ui->gSpinBox->setValue(activeObject->g);
     ui->bSpinBox->setValue(activeObject->b);
-    ui->modelComboBox->setCurrentIndex(ui->modelComboBox->findText(activeObject->model));
-    ui->textureComboBox->setCurrentIndex(ui->textureComboBox->findText(activeObject->texture));
+    if(activeObject->model != "light") {
+        ui->modelComboBox->setCurrentIndex(ui->modelComboBox->findText(activeObject->model));
+        ui->textureComboBox->setCurrentIndex(ui->textureComboBox->findText(activeObject->texture));
+    }
+
 
 
 }
