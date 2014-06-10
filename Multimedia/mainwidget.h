@@ -7,6 +7,7 @@
 #include <QDebug>
 #include "sceneobject.h"
 #include <QList>
+#include <gl/GLU.h>
 
 class MainWidget : public QGLWidget
 {
