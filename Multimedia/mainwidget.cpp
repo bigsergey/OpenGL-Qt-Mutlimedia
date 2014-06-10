@@ -41,8 +41,8 @@ void MainWidget::initializeGL()
     textures["wall.png"]=QString(":/images/wall.png");
 
     cameraPosX = 0;
-    cameraPosY = 20;
-    cameraPosZ = -20;
+    cameraPosY = 0;
+    cameraPosZ = 20;
 
 }
 
@@ -58,9 +58,9 @@ void MainWidget::paintGL()
     gluPerspective(45,1.0,0.1,200);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(cameraPosX,cameraPosY,cameraPosZ,0,0,0,0,1,0);
+    gluLookAt(cameraPosX,cameraPosY,cameraPosZ,cameraPosX,cameraPosY,cameraPosZ-20,0,1,0);
 
-    glLoadIdentity();
+    //glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
     draw();
 }
@@ -1059,31 +1059,37 @@ void MainWidget::drawLight(double x, double y, double z, int rotX, int rotY, int
 void MainWidget::moveCameraForvard() {
     qDebug() << "forward move";
     cameraPosZ += 0.2f;
+    updateGL();
 }
 
 void MainWidget::moveCameraBack() {
     qDebug()<< "back move";
     cameraPosZ -= 0.2f;
+    updateGL();
 }
 
 void MainWidget::moveCameraLeft() {
     qDebug()<< "left move";
     cameraPosX -= 0.2f;
+    updateGL();
 }
 
 void MainWidget::moveCameraRight() {
     qDebug()<< "right move";
     cameraPosX += 0.2f;
+    updateGL();
 }
 
 void MainWidget::moveCameraUp() {
     qDebug()<< "up move";
     cameraPosY += 0.2f;
+    updateGL();
 }
 
 void MainWidget::moveCameraDown() {
     qDebug()<< "down move";
     cameraPosY -= 0.2f;
+    updateGL();
 }
 
 void MainWidget::rotateCameraX() {
