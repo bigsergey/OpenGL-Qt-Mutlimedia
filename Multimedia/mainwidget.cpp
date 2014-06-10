@@ -330,6 +330,15 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
 
     //drawSphere(x, y, z, rotX, rotY, rotZ, sX, SY, sZ, r, g, b, texture);
 
+    if(texture != "") {
+        qDebug() << texture;
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, bindTexture
+                      (QPixmap(textures[texture]), GL_TEXTURE_2D));
+    } else {
+         glDisable(GL_TEXTURE_2D);
+    }
+
     int subdivisionsX = 2;
     int subdivisionsY = 2;
     int subdivisionsZ = 2;
@@ -348,65 +357,72 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
         {
             for(int i = -1; i < subdivisionsX - 1; i++)
             {
+                glNormal3f(0.0f, 1.0f, 0.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, j * sizeZ / subdivisionsZ);
                 glVertex3f(
                     (i) * sizeX / subdivisionsX,
                     0.5f * sizeY,
                     (j) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, 1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, j * sizeZ / subdivisionsZ));*/
-
+                */
+                glNormal3f(0.0f, 1.0f, 0.0f);
+                glTexCoord2f((i * sizeX / subdivisionsX), (j + 1) * sizeZ / subdivisionsZ);
                 glVertex3f(
                     (i) * sizeX / subdivisionsX,
                     0.5f * sizeY,
                     ( j + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, 1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-                texCoords->push_back(glm::vec2((i * sizeX / subdivisionsX), (j + 1) * sizeZ / subdivisionsZ));*/
-
+                */
+                glNormal3f(0.0f, 1.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, j * sizeZ / subdivisionsZ);
                 glVertex3f(
                     ( i + 1) * sizeX / subdivisionsX,
                     0.5f * sizeY,
                     (j) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, 1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, j * sizeZ / subdivisionsZ));*/
-
+                */
+                glNormal3f(0.0f, 1.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, (j * sizeZ / subdivisionsZ));
                 glVertex3f(
                     (i + 1) * sizeX / subdivisionsX,
                     0.5f * sizeY,
                     ( j) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, 1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, (j * sizeZ / subdivisionsZ)));*/
-
+                */
+                glNormal3f(0.0f, 1.0f, 0.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, (j + 1) * sizeZ / subdivisionsZ);
                 glVertex3f(
                     ( i) * sizeX / subdivisionsX,
                     0.5f * sizeY,
                     ( j + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, 1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, (j + 1) * sizeZ / subdivisionsZ));*/
-
+                */
+                glNormal3f(0.0f, 1.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, (j + 1) * sizeZ / subdivisionsZ);
                 glVertex3f(
                     ( i + 1) * sizeX / subdivisionsX,
                     0.5f * sizeY,
                     ( j + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, 1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, (j + 1) * sizeZ / subdivisionsZ));*/
+                */
             }
         }
 
@@ -414,65 +430,72 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
         {
             for(int i = -1; i < subdivisionsX - 1; i++)
             {
+                glNormal3f(0.0f, -1.0f, 0.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, j * sizeZ / subdivisionsZ);
                 glVertex3f(
                     (i) * sizeX / subdivisionsX,
                     -0.5f * sizeY,
                     (j) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, -1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, j * sizeZ / subdivisionsZ));*/
-
+                */
+                glNormal3f(0.0f, -1.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, j * sizeZ / subdivisionsZ);
                 glVertex3f(
                     (i + 1) * sizeX / subdivisionsX,
                     -0.5f * sizeY,
                     (j) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, -1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, j * sizeZ / subdivisionsZ));*/
-
+                */
+                glNormal3f(0.0f, -1.0f, 0.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, (j + 1) * sizeZ / subdivisionsZ);
                 glVertex3f(
                     ( i) * sizeX / subdivisionsX,
                     -0.5f * sizeY,
                     ( j + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, -1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, (j + 1) * sizeZ / subdivisionsZ));*/
-
+                */
+                glNormal3f(0.0f, -1.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, j * sizeZ / subdivisionsZ);
                 glVertex3f(
                     (i + 1) * sizeX / subdivisionsX,
                     -0.5f * sizeY,
                     (j) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, -1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, j * sizeZ / subdivisionsZ));*/
-
+                */
+                glNormal3f(0.0f, -1.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, (j + 1) * sizeZ / subdivisionsZ);
                 glVertex3f(
                     (i + 1) * sizeX / subdivisionsX,
                     -0.5f * sizeY,
                     (j + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, -1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, (j + 1) * sizeZ / subdivisionsZ));*/
-
+                */
+                glNormal3f(0.0f, -1.0f, 0.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, (j + 1) * sizeZ / subdivisionsZ);
                 glVertex3f(
                     (i) * sizeX / subdivisionsX,
                     -0.5f * sizeY,
                     (j + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(0.0f, -1.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
                 bitangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, (j + 1) * sizeZ / subdivisionsZ));*/
+                */
             }
         }
 
@@ -480,65 +503,72 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
         {
             for(int i = - 1; i < subdivisionsX - 1; i++)
             {
+                glNormal3f(0.0f, 0.0f, 1.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, j * sizeY / subdivisionsY);
                 glVertex3f(
                     (i) * sizeX / subdivisionsX,
                     (j) * sizeY / subdivisionsY,
                     0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, 1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(0.0f, 0.0f, 1.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, j * sizeY / subdivisionsY);
                 glVertex3f(
                     (i + 1) * sizeX / subdivisionsX,
                     (j) * sizeY / subdivisionsY,
                     0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, 1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(0.0f, 0.0f, 1.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     (i) * sizeX / subdivisionsX,
                     (j + 1) * sizeY / subdivisionsY,
                     0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, 1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f ,1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(0.0f, 0.0f, 1.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, j * sizeY / subdivisionsY);
                 glVertex3f(
                     (i + 1) * sizeX / subdivisionsX,
                     ( j) * sizeY / subdivisionsY,
                     0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, 1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(0.0f, 0.0f, 1.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     (i + 1) * sizeX / subdivisionsX,
                     (j + 1) * sizeY / subdivisionsY,
                     0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, 1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(0.0f, 0.0f, 1.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     (i) * sizeX / subdivisionsX,
                     ( j + 1) * sizeY / subdivisionsY,
                     0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, 1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY));*/
+                */
             }
         }
 
@@ -546,65 +576,72 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
         {
             for(int i = - 1; i < subdivisionsX - 1; i++)
             {
+                glNormal3f(0.0f, 0.0f, -1.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, j * sizeY / subdivisionsY);
                 glVertex3f(
                     (i) * sizeX / subdivisionsX,
                     ( j) * sizeY / subdivisionsY,
                     -0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, -1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(0.0f, 0.0f, -1.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     (i) * sizeX / subdivisionsX,
                     (j + 1) * sizeY / subdivisionsY,
                     -0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, -1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(0.0f, 0.0f, -1.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, j * sizeY / subdivisionsY);
                 glVertex3f(
                     (i + 1) * sizeX / subdivisionsX,
                     (j) * sizeY / subdivisionsY,
                     -0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, -1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(0.0f, 0.0f, -1.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, j * sizeY / subdivisionsY);
                 glVertex3f(
                     (i + 1) * sizeX / subdivisionsX,
                     (j) * sizeY / subdivisionsY,
                     -0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, -1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(0.0f, 0.0f, -1.0f);
+                glTexCoord2f(i * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     (i) * sizeX / subdivisionsX,
                     ( j + 1) * sizeY / subdivisionsY,
                     -0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, -1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(0.0f, 0.0f, -1.0f);
+                glTexCoord2f((i + 1) * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     (i + 1) * sizeX / subdivisionsX,
                     (j + 1) * sizeY / subdivisionsY,
                     -0.5f * sizeZ
                 );
-                glNormal3f(0.0f, 0.0f, -1.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
                 bitangents->push_back(glm::vec3(-1.0f, 0.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeX / subdivisionsX, (j + 1) * sizeY / subdivisionsY));*/
+                */
             }
         }
 
@@ -612,65 +649,72 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
         {
             for(int i = - 1; i < subdivisionsZ - 1; i++)
             {
+                glNormal3f(-1.0f, 0.0f, 0.0f);
+                glTexCoord2f(i * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY);
                 glVertex3f(
                     -0.5f * sizeX,
                     (j) * sizeY / subdivisionsY,
                     ( i) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(-1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
                 bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(-1.0f, 0.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY);
                 glVertex3f(
                     -0.5f * sizeX,
                     (j) * sizeY / subdivisionsY,
                     (i + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(-1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
                 bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(-1.0f, 0.0f, 0.0f);
+                glTexCoord2f(i * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     -0.5f * sizeX,
                     (j + 1) * sizeY / subdivisionsY,
                     (i) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(-1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
                 bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(-1.0f, 0.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY);
                 glVertex3f(
                     -0.5f * sizeX,
                     (j) * sizeY / subdivisionsY,
                     (i + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(-1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
                 bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(-1.0f, 0.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     -0.5f * sizeX,
                     (j + 1) * sizeY / subdivisionsY,
                     (i + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(-1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
                 bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(-1.0f, 0.0f, 0.0f);
+                glTexCoord2f(i * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     -0.5f * sizeX,
                     (j + 1) * sizeY / subdivisionsY,
                     (i) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(-1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, -1.0f));
                 bitangents->push_back(glm::vec3(0.0f, -1.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY));*/
+                */
             }
         }
 
@@ -678,65 +722,72 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
         {
             for(int i = - 1; i < subdivisionsZ - 1; i++)
             {
+                glNormal3f(1.0f, 0.0f, 0.0f);
+                glTexCoord2f(i * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY);
                 glVertex3f(
                     0.5f * sizeX,
                     (j) * sizeY / subdivisionsY,
                     (i) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
                 bitangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(1.0f, 0.0f, 0.0f);
+                glTexCoord2f(i * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     0.5f * sizeX,
                     (j + 1) * sizeY / subdivisionsY,
                     (i) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
                 bitangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(1.0f, 0.0f ,0.0f);
+                glTexCoord2f((i + 1) * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY);
                 glVertex3f(
                     0.5f * sizeX,
                     (j) * sizeY / subdivisionsY,
                     (i + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(1.0f, 0.0f ,0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
                 bitangents->push_back(glm::vec3(0.0f, 1.0f ,0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(1.0f, 0.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY);
                 glVertex3f(
                     0.5f * sizeX,
                     (j) * sizeY / subdivisionsY,
                     (i + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
                 bitangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeZ / subdivisionsZ, j * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(1.0f, 0.0f, 0.0f);
+                glTexCoord2f(i * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     0.5f * sizeX,
                     (j + 1) * sizeY / subdivisionsY,
                     ( i) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
                 bitangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-                texCoords->push_back(glm::vec2(i * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY));*/
-
+                */
+                glNormal3f(1.0f, 0.0f, 0.0f);
+                glTexCoord2f((i + 1) * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY);
                 glVertex3f(
                     0.5f * sizeX,
                     ( j + 1) * sizeY / subdivisionsY,
                     (i + 1) * sizeZ / subdivisionsZ
                 );
-                glNormal3f(1.0f, 0.0f, 0.0f);/*
+                /*
                 tangents->push_back(glm::vec3(0.0f, 0.0f, 1.0f));
                 bitangents->push_back(glm::vec3(0.0f, 1.0f, 0.0f));
-                texCoords->push_back(glm::vec2((i + 1) * sizeZ / subdivisionsZ, (j + 1) * sizeY / subdivisionsY));*/
+                */
             }
         }
         glEnd();
