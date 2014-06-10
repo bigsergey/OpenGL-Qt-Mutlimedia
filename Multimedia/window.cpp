@@ -331,16 +331,16 @@ void Window::keyPressEvent(QKeyEvent *event) {
         ui->widget->moveCameraBack();
         break;
     case Qt::Key_Up:
-        ui->widget->rotateCameraY();
+        ui->widget->rotateCameraUp();
         break;
     case Qt::Key_Down:
-        ui->widget->rotateCameraY();
+        ui->widget->rotateCameraDown();
         break;
     case Qt::Key_Left:
-        ui->widget->rotateCameraX();
+        ui->widget->rotateCameraLeft();
         break;
     case Qt::Key_Right:
-        ui->widget->rotateCameraX();
+        ui->widget->rotateCameraRight();
         break;
     }
 

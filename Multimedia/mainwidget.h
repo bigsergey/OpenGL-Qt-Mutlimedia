@@ -40,6 +40,9 @@ private:
     float cameraPosX;
     float cameraPosY;
     float cameraPosZ;
+    float centerPosX;
+    float centerPosY;
+    float centerPosZ;
 
 
 signals:
@@ -53,8 +56,10 @@ public slots:
     void moveCameraRight();
     void moveCameraUp();
     void moveCameraDown();
-    void rotateCameraX();
-    void rotateCameraY();
+    void rotateCameraUp();
+    void rotateCameraDown();
+    void rotateCameraLeft();
+    void rotateCameraRight();
 
 };
 

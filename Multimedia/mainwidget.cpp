@@ -43,6 +43,9 @@ void MainWidget::initializeGL()
     cameraPosX = 0;
     cameraPosY = 0;
     cameraPosZ = 20;
+    centerPosX = 0;
+    centerPosY = 0;
+    centerPosZ = 0;
 
 }
 
@@ -58,7 +61,7 @@ void MainWidget::paintGL()
     gluPerspective(45,1.0,0.1,200);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(cameraPosX,cameraPosY,cameraPosZ,cameraPosX,cameraPosY,cameraPosZ-20,0,1,0);
+    gluLookAt(cameraPosX,cameraPosY,cameraPosZ,centerPosX,centerPosY,centerPosZ,0,1,0);
 
     //glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
@@ -1058,44 +1061,85 @@ void MainWidget::drawLight(double x, double y, double z, int rotX, int rotY, int
 
 void MainWidget::moveCameraForvard() {
     qDebug() << "forward move";
-    cameraPosZ += 0.2f;
+    cameraPosZ -= 0.2f;
+    centerPosZ -= 0.2f;
     updateGL();
 }
 
 void MainWidget::moveCameraBack() {
     qDebug()<< "back move";
-    cameraPosZ -= 0.2f;
+    cameraPosZ += 0.2f;
+    centerPosZ += 0.2f;
     updateGL();
 }
 
 void MainWidget::moveCameraLeft() {
     qDebug()<< "left move";
     cameraPosX -= 0.2f;
+    centerPosX -= 0.2f;
     updateGL();
 }
 
 void MainWidget::moveCameraRight() {
     qDebug()<< "right move";
     cameraPosX += 0.2f;
+    centerPosX += 0.2f;
     updateGL();
 }
 
 void MainWidget::moveCameraUp() {
     qDebug()<< "up move";
     cameraPosY += 0.2f;
+    centerPosY += 0.2f;
     updateGL();
 }
 
 void MainWidget::moveCameraDown() {
     qDebug()<< "down move";
     cameraPosY -= 0.2f;
+    centerPosY -= 0.2f;
     updateGL();
 }
 
-void MainWidget::rotateCameraX() {
+void MainWidget::rotateCameraLeft() {
     qDebug()<< "rotX";
+    centerPosX-=cameraPosX;
+    centerPosZ-=cameraPosZ;
+    float ncenterPosX = (centerPosX) * cos(5.0f/360*M_2_PI) + (centerPosZ) * sin(5.0f/360*M_2_PI);
+    float ncenterPosZ = (centerPosZ) * cos(5.0f/360*M_2_PI) - (centerPosX) * sin(5.0f/360*M_2_PI);
+    centerPosX=ncenterPosX+cameraPosX;
+    centerPosZ=ncenterPosZ+cameraPosZ;
+    updateGL();
+
+
+//   Dookoła osi Y:
+//    NX = X * cos(y) + Z * sin(y)
+//    NY = Y
+//    NZ = Z * cos(y) - X * sin(y)
+
+//   Dookoła osi Z:
+//    NX = X * cos(z) - y * sin(z)
+//    NY = X * sin(z) + y * cos(z)
+//    NZ = Z
 }
-void MainWidget::rotateCameraY() {
+void MainWidget::rotateCameraRight() {
+    qDebug()<< "rotX";
+    centerPosX-=cameraPosX;
+    centerPosZ-=cameraPosZ;
+    float ncenterPosX = (centerPosX) * cos(-5.0f/360*M_2_PI) + (centerPosZ) * sin(-5.0f/360*M_2_PI);
+    float ncenterPosZ = (centerPosZ) * cos(-5.0f/360*M_2_PI) - (centerPosX) * sin(-5.0f/360*M_2_PI);
+    centerPosX=ncenterPosX+cameraPosX;
+    centerPosZ=ncenterPosZ+cameraPosZ;
+    updateGL();
+}
+void MainWidget::rotateCameraUp() {
+    centerPosY+=1;
+    updateGL();
+    qDebug()<< "rotY";
+}
+void MainWidget::rotateCameraDown() {
+    centerPosY-=1;
+    updateGL();
     qDebug()<< "rotY";
 }
 
