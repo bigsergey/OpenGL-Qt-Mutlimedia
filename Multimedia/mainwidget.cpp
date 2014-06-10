@@ -40,12 +40,26 @@ void MainWidget::initializeGL()
     textures["blue.png"]=QString(":/images/blue.png");
     textures["wall.png"]=QString(":/images/wall.png");
 
+    cameraPosX = 0;
+    cameraPosY = 20;
+    cameraPosZ = -20;
+
 }
 
 void MainWidget::paintGL()
 {
     qDebug() << "paintGl";
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //glLoadIdentity();
+
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+//    glOrtho(-7, +7, -7, +7, 1.0, 50.0);
+    gluPerspective(45,1.0,0.1,200);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(cameraPosX,cameraPosY,cameraPosZ,0,0,0,0,1,0);
+
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -10.0);
     draw();
@@ -54,7 +68,7 @@ void MainWidget::paintGL()
 void MainWidget::resizeGL(int width, int height)
 {
     glViewport(0, 0, 600, 600);
-
+/*
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 //    glOrtho(-7, +7, -7, +7, 1.0, 50.0);
@@ -62,9 +76,12 @@ void MainWidget::resizeGL(int width, int height)
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(0,20,-20,0,0,0,0,1,0);
+    */
 }
 void MainWidget::draw()
 {
+
+
     for(int i=0; i<sceneObjects->count(); i++){
         if(sceneObjects->at(i)->model==QString("sphere")){
             drawSphere(sceneObjects->at(i)->x,
@@ -1040,27 +1057,33 @@ void MainWidget::drawLight(double x, double y, double z, int rotX, int rotY, int
 }
 
 void MainWidget::moveCameraForvard() {
-    qDebug() << "forvard move";
+    qDebug() << "forward move";
+    cameraPosZ += 0.2f;
 }
 
 void MainWidget::moveCameraBack() {
     qDebug()<< "back move";
+    cameraPosZ -= 0.2f;
 }
 
 void MainWidget::moveCameraLeft() {
     qDebug()<< "left move";
+    cameraPosX -= 0.2f;
 }
 
 void MainWidget::moveCameraRight() {
     qDebug()<< "right move";
+    cameraPosX += 0.2f;
 }
 
 void MainWidget::moveCameraUp() {
     qDebug()<< "up move";
+    cameraPosY += 0.2f;
 }
 
 void MainWidget::moveCameraDown() {
     qDebug()<< "down move";
+    cameraPosY -= 0.2f;
 }
 
 void MainWidget::rotateCameraX() {

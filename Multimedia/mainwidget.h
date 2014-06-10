@@ -37,6 +37,10 @@ private:
     void drawLight(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture);
     void testdraw(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture);
 
+    float cameraPosX;
+    float cameraPosY;
+    float cameraPosZ;
+
 
 signals:
     void texturePathChanged(QString);
