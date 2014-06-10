@@ -12,16 +12,16 @@ void SceneObject::doSomething(QWidget* widget){
        );
 }
 
-void SceneObject::setX(int x) {
+void SceneObject::setX(double x) {
     qDebug() << x;
     this->x = x;
 }
 
-void SceneObject::setY(int y) {
+void SceneObject::setY(double y) {
     this->y = y;
 }
 
-void SceneObject::setZ(int z) {
+void SceneObject::setZ(double z) {
     this->z = z;
 }
 
@@ -37,15 +37,15 @@ void SceneObject::setRotZ(int rotZ) {
     this->rotZ = rotZ;
 }
 
-void SceneObject::setSX(int sX) {
+void SceneObject::setSX(double sX) {
     this->sX = sX;
 }
 
-void SceneObject::setSY(int sY) {
+void SceneObject::setSY(double sY) {
     this->sY= sY;
 }
 
-void SceneObject::setSZ(int sZ) {
+void SceneObject::setSZ(double sZ) {
     this->sZ = sZ;
 }
 

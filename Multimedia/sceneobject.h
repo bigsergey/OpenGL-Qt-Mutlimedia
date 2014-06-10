@@ -9,15 +9,15 @@ class SceneObject
 public:
     SceneObject();
     void doSomething(QWidget* widget);
-    int x;
-    int y;
-    int z;
+    double x;
+    double y;
+    double z;
     int rotX;
     int rotY;
     int rotZ;
-    int sX;
-    int sY;
-    int sZ;
+    double sX;
+    double sY;
+    double sZ;
     int r;
     int g;
     int b;
@@ -25,15 +25,15 @@ public:
     QString texture;
 
 public slots:
-    void setX(int);
-    void setY(int);
-    void setZ(int);
+    void setX(double);
+    void setY(double);
+    void setZ(double);
     void setRotX(int);
     void setRotY(int);
     void setRotZ(int);
-    void setSX(int);
-    void setSY(int);
-    void setSZ(int);
+    void setSX(double);
+    void setSY(double);
+    void setSZ(double);
     void setR(int);
     void setG(int);
     void setB(int);

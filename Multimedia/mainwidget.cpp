@@ -156,7 +156,7 @@ void MainWidget::draw()
 }
 
 
-void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+void MainWidget::drawSphere(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture){
 
     if(texture != "") {
         qDebug() << texture;
@@ -182,6 +182,12 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
         for(int j = 0; j < subdivisionsAxis; j++)
         {
             //
+            glNormal3f(
+                sinf(i * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
+                sinf(i * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
+                cosf(i * (M_PI / subdivisionsHeight))
+            );
+
             glTexCoord2f((float)(j * 2 * M_PI * radius / subdivisionsAxis),
                          ((float)(i + 1) / subdivisionsHeight));
 
@@ -193,9 +199,9 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
             //vertices->push_back(1.0f);
 
             glNormal3f(
-                sinf(i * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
-                sinf(i * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
-                cosf(i * (M_PI / subdivisionsHeight))
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
+                cosf((i + 1) * (M_PI / subdivisionsHeight))
             );
 
             glTexCoord2f(
@@ -210,9 +216,9 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
             );
 
             glNormal3f(
-                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
-                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
-                cosf((i + 1) * (M_PI / subdivisionsHeight))
+                sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                cosf(i * (M_PI / subdivisionsHeight))
             );
 
             glTexCoord2f(
@@ -227,9 +233,9 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
             );
 
             glNormal3f(
-                sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
-                sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
-                cosf(i * (M_PI / subdivisionsHeight))
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
+                cosf((i + 1) * (M_PI / subdivisionsHeight))
             );
 
             glTexCoord2f(
@@ -244,8 +250,8 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
             );
 
             glNormal3f(
-                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf(j * 2 * M_PI / subdivisionsAxis),
-                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf(j * 2 * M_PI / subdivisionsAxis),
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
                 cosf((i + 1) * (M_PI / subdivisionsHeight))
             );
 
@@ -260,11 +266,7 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
                 radius * cosf((i + 1) * (M_PI / subdivisionsHeight))
             );
 
-            glNormal3f(
-                sinf((i + 1) * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
-                sinf((i + 1) * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
-                cosf((i + 1) * (M_PI / subdivisionsHeight))
-            );
+
 /*
             tangents->push_back(glm::vec3(
                 sinf(((i + 1) + 0.5f) * (M_PI / subdivisionsHeight) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis)),
@@ -283,6 +285,12 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
                 (float)(i + 1) / subdivisionsHeight
             ));
 */
+            glNormal3f(
+                sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
+                cosf(i * (M_PI / subdivisionsHeight))
+            );
+
             glTexCoord2f(
                 (float)((j + 1) * 2 * M_PI * radius / subdivisionsAxis),
                 (float)i / subdivisionsHeight
@@ -293,11 +301,7 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
                 radius * cosf(i * (M_PI / subdivisionsHeight))
             );
 
-            glNormal3f(
-                sinf(i * (M_PI / subdivisionsHeight)) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis),
-                sinf(i * (M_PI / subdivisionsHeight)) * sinf((j + 1) * 2 * M_PI / subdivisionsAxis),
-                cosf(i * (M_PI / subdivisionsHeight))
-            );
+
 /*
             tangents->push_back(glm::vec3(
                 sinf((i + 0.5f) * (M_PI / subdivisionsHeight) * cosf((j + 1) * 2 * M_PI / subdivisionsAxis)),
@@ -322,7 +326,7 @@ void MainWidget::drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, i
     glPopMatrix();
 
 }
-void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int sY, int sZ, int r, int g, int b, QString texture){
+void MainWidget::drawCuboid(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double sY, double sZ, int r, int g, int b, QString texture){
 
     //drawSphere(x, y, z, rotX, rotY, rotZ, sX, SY, sZ, r, g, b, texture);
 
@@ -789,7 +793,7 @@ void MainWidget::drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, i
         glEnd();
         glPopMatrix();
 }
-void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+void MainWidget::drawCylinder(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture){
 
     if(texture != "") {
         qDebug() << texture;
@@ -915,7 +919,7 @@ void MainWidget::drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ,
     glEnd();
     glPopMatrix();
 }
-void MainWidget::drawSurface(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+void MainWidget::drawSurface(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture){
     if(texture != "") {
         qDebug() << texture;
         glEnable(GL_TEXTURE_2D);
@@ -955,7 +959,7 @@ void MainWidget::drawSurface(int x, int y, int z, int rotX, int rotY, int rotZ, 
     glEnd();
     glPopMatrix();
 }
-void MainWidget::drawPyramid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+void MainWidget::drawPyramid(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture){
     if(texture != "") {
         qDebug() << texture;
         glEnable(GL_TEXTURE_2D);
@@ -1020,7 +1024,7 @@ void MainWidget::drawPyramid(int x, int y, int z, int rotX, int rotY, int rotZ, 
     glEnd();
     glPopMatrix();
 }
-void MainWidget::drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture){
+void MainWidget::drawLight(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture){
     lightPosition[0] = x;
     lightPosition[1] = y;
     lightPosition[2] = z;

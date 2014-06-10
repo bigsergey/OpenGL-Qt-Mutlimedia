@@ -28,13 +28,13 @@ protected:
 private:
     QList<SceneObject*> * sceneObjects;
     void draw();
-    void drawSphere(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
-    void drawCuboid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
-    void drawCylinder(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
-    void drawSurface(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
-    void drawPyramid(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
-    void drawLight(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
-    void testdraw(int x, int y, int z, int rotX, int rotY, int rotZ, int sX, int SY, int sZ, int r, int g, int b, QString texture);
+    void drawSphere(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture);
+    void drawCuboid(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture);
+    void drawCylinder(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture);
+    void drawSurface(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture);
+    void drawPyramid(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture);
+    void drawLight(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture);
+    void testdraw(double x, double y, double z, int rotX, int rotY, int rotZ, double sX, double SY, double sZ, int r, int g, int b, QString texture);
 
 
 signals:

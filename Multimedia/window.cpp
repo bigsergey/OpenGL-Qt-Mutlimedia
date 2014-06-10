@@ -61,16 +61,16 @@ Window::Window(QWidget *parent) :
                     this, SLOT(onListViewItemClicked(QItemSelection)));
         connect(ui->addButton, SIGNAL(released()), this, SLOT(onAddButtonClicked()));
         connect(ui->deleteButton, SIGNAL(released()), this, SLOT(onDeleteButtonClicked()));
-        connect(ui->xPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setX(int)));
-        connect(ui->yPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setY(int)));
-        connect(ui->zPosSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setZ(int)));
+        connect(ui->xPosSpinBox, SIGNAL(valueChanged(double)), this, SLOT(setX(double)));
+        connect(ui->yPosSpinBox, SIGNAL(valueChanged(double)), this, SLOT(setY(double)));
+        connect(ui->zPosSpinBox, SIGNAL(valueChanged(double)), this, SLOT(setZ(double)));
         connect(ui->xRotSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotX(int)));
         connect(ui->intensitySpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotX(int)));
         connect(ui->yRotSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotY(int)));
         connect(ui->zRotSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setRotZ(int)));
-        connect(ui->xScaleSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setSX(int)));
-        connect(ui->yScaleSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setSY(int)));
-        connect(ui->zScaleSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setSZ(int)));
+        connect(ui->xScaleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(setSX(double)));
+        connect(ui->yScaleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(setSY(double)));
+        connect(ui->zScaleSpinBox, SIGNAL(valueChanged(double)), this, SLOT(setSZ(double)));
         connect(ui->rSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setR(int)));
         connect(ui->gSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setG(int)));
         connect(ui->bSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setB(int)));
@@ -198,32 +198,32 @@ void Window::on_addTextureButton_clicked()
    }
 }
 
-void Window::setX(int x) {
+void Window::setX(double x) {
     this->activeObject->x = x;
     ui->widget->updateGL();
 }
 
-void Window::setY(int y) {
+void Window::setY(double y) {
     this->activeObject->y = y;
     ui->widget->updateGL();
 }
 
-void Window::setZ(int z) {
+void Window::setZ(double z) {
     this->activeObject->z = z;
     ui->widget->updateGL();
 }
 
-void Window::addX(int x) {
+void Window::addX(double x) {
     this->activeObject->x = this->activeObject->x + x;
     ui->xPosSpinBox->setValue(ui->xPosSpinBox->value() + x);
 }
 
-void Window::addY(int y) {
+void Window::addY(double y) {
     this->activeObject->y = this->activeObject->y + y;
     ui->yPosSpinBox->setValue(ui->yPosSpinBox->value() + y);
 }
 
-void Window::addZ(int z) {
+void Window::addZ(double z) {
     this->activeObject->z = this->activeObject->z + z;
     ui->zPosSpinBox->setValue(ui->zPosSpinBox->value() + z);
 }
@@ -243,17 +243,17 @@ void Window::setRotZ(int rotZ) {
     ui->widget->updateGL();
 }
 
-void Window::setSX(int sX) {
+void Window::setSX(double sX) {
     this->activeObject->sX = sX;
     ui->widget->updateGL();
 }
 
-void Window::setSY(int sY) {
+void Window::setSY(double sY) {
     this->activeObject->sY= sY;
     ui->widget->updateGL();
 }
 
-void Window::setSZ(int sZ) {
+void Window::setSZ(double sZ) {
     this->activeObject->sZ = sZ;
     ui->widget->updateGL();
 }
