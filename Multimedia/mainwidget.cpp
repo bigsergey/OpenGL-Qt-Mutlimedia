@@ -53,20 +53,16 @@ void MainWidget::paintGL()
 
 void MainWidget::resizeGL(int width, int height)
 {
-    int side = qMin(width, height);
-
     glViewport(0, 0, 600, 600);
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-#ifdef QT_OPENGL_ES_1
-    glOrthof(-2, +2, -2, +2, 1.0, 15.0);
-#else
-    glOrtho(-7, +7, -7, +7, 1.0, 50.0);
-#endif
+//    glOrtho(-7, +7, -7, +7, 1.0, 50.0);
+    gluPerspective(45,1.0,0.1,200);
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(0,20,-20,0,0,0,0,1,0);
 }
-
 void MainWidget::draw()
 {
     for(int i=0; i<sceneObjects->count(); i++){
