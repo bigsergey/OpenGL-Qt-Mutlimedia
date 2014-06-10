@@ -48,7 +48,7 @@ private slots:
     void setModel(QString);
     void setTexture(QString);
 //    void keyReleaseEvent(QKeyEvent *event);
-//    void keyPressEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event);
 
 
 private:

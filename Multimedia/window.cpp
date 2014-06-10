@@ -306,33 +306,45 @@ void Window::setTexture(QString texture) {
 //    ui->widget->updateGL();
 //}
 
-//void Window::keyPressEvent(QKeyEvent *event) {
+void Window::keyPressEvent(QKeyEvent *event) {
 
-//    switch (event->key()) {
-//    case Qt::Key_Escape:
-//        close();
-//        break;
-//    case Qt::Key_R:
-//        moveZ = MOVE;
-//        break;
-//    case Qt::Key_F:
-//        moveZ = -MOVE;
-//        break;
-//    case Qt::Key_A:
-//        moveX = -MOVE;
-//        break;
-//    case Qt::Key_D:
-//        moveX = MOVE;
-//        break;
-//    case Qt::Key_W:
-//        moveY = MOVE;
-//        break;
-//    case Qt::Key_S:
-//        moveY = -MOVE;
-//        break;
-//    }
-//    ui->widget->updateGL();
-//}
+    switch (event->key()) {
+    case Qt::Key_Escape:
+        close();
+        break;
+    case Qt::Key_Space:
+        ui->widget->moveCameraUp();
+        break;
+    case Qt::Key_C:
+        ui->widget->moveCameraDown();
+        break;
+    case Qt::Key_A:
+        ui->widget->moveCameraLeft();
+        break;
+    case Qt::Key_D:
+        ui->widget->moveCameraRight();
+        break;
+    case Qt::Key_W:
+        ui->widget->moveCameraForvard();
+        break;
+    case Qt::Key_S:
+        ui->widget->moveCameraBack();
+        break;
+    case Qt::Key_Up:
+        ui->widget->rotateCameraY();
+        break;
+    case Qt::Key_Down:
+        ui->widget->rotateCameraY();
+        break;
+    case Qt::Key_Left:
+        ui->widget->rotateCameraX();
+        break;
+    case Qt::Key_Right:
+        ui->widget->rotateCameraX();
+        break;
+    }
+
+}
 
 //void Window::keyReleaseEvent(QKeyEvent *event) {
 

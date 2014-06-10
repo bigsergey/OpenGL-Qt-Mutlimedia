@@ -1038,3 +1038,39 @@ void MainWidget::drawLight(double x, double y, double z, int rotX, int rotY, int
     glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
     glEnable( GL_COLOR_MATERIAL );
 }
+
+void MainWidget::moveCameraForvard() {
+    qDebug() << "forvard move";
+}
+
+void MainWidget::moveCameraBack() {
+    qDebug()<< "back move";
+}
+
+void MainWidget::moveCameraLeft() {
+    qDebug()<< "left move";
+}
+
+void MainWidget::moveCameraRight() {
+    qDebug()<< "right move";
+}
+
+void MainWidget::moveCameraUp() {
+    qDebug()<< "up move";
+}
+
+void MainWidget::moveCameraDown() {
+    qDebug()<< "down move";
+}
+
+void MainWidget::rotateCameraX() {
+    qDebug()<< "rotX";
+}
+void MainWidget::rotateCameraY() {
+    qDebug()<< "rotY";
+}
+
+void MainWidget::mousePressEvent ( QMouseEvent * event ){
+    printf("\nMouse in board");
+    setFocus();
+}

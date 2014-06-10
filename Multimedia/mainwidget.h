@@ -15,6 +15,7 @@ class MainWidget : public QGLWidget
 public:
     explicit MainWidget(QWidget *parent = 0);
     void setSceneObjects(QList<SceneObject*> *sceneObjects);
+    void mousePressEvent ( QMouseEvent * event );
 
 
 protected:
@@ -42,6 +43,14 @@ signals:
 
 public slots:
     void addTexture(QString);
+    void moveCameraForvard();
+    void moveCameraBack();
+    void moveCameraLeft();
+    void moveCameraRight();
+    void moveCameraUp();
+    void moveCameraDown();
+    void rotateCameraX();
+    void rotateCameraY();
 
 };
 
